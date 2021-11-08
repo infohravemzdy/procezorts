@@ -1,0 +1,60 @@
+import {IArticleSpecFactory} from "./IArticleSpecFactory";
+import {IArticleSpecProvider} from "../registry_providers/IArticleSpecProvider";
+import {ArticleCode} from "../service_types/ArticleCode";
+import {IArticleSpec} from "../service_interfaces/IArticleSpec";
+import {CODE, SpecFactory} from "./SpecFactory";
+import {ArticleSpec} from "../registry_providers/ArticleSpec";
+import {ConceptConst} from "../registry_constants/ConceptConst";
+import {ConceptCode} from "../service_types/ConceptCode";
+import {ArticleSpecProvider} from "../registry_providers/ArticleSpecProvider";
+import {ArticleConst} from "../registry_constants/ArticleConst";
+import {IPeriod} from "hravemzdy.legalios/dist";
+import {VersionCode} from "../service_types/VersionCode";
+import {ArticleProviderConfig} from "./ArticleProviderConfig";
+
+class NotFoundArticleSpec extends ArticleSpec {
+    static CONCEPT_CODE = ConceptConst.CONCEPT_NOTFOUND;
+    constructor(_code: ArticleCode) {
+        super(_code, ConceptCode.get(NotFoundArticleSpec.CONCEPT_CODE), Array<ArticleCode>())
+    }
+    static new(): NotFoundArticleSpec {
+        return new NotFoundArticleSpec(ArticleCode.get(NotFoundArticleProvider.ARTICLE_CODE));
+    }
+}
+
+class NotFoundArticleProvider extends ArticleSpecProvider {
+    static ARTICLE_CODE = ArticleConst.ARTICLE_NOTFOUND;
+    constructor() {
+        super(ArticleCode.get(NotFoundArticleProvider.ARTICLE_CODE))
+    }
+
+    override GetSpec(period: IPeriod, version: VersionCode): IArticleSpec {
+        return new NotFoundArticleSpec(this.code)
+    }
+
+}
+
+export class ProviderRecord {
+    article: number;
+    concept: number;
+    sums: Iterable<number>;
+
+    constructor(_article: number, _concept: number, _sums: Iterable<number>) {
+        this.article = _article;
+        this.concept = _concept;
+        this.sums = Array.from(_sums);
+    }
+}
+
+export abstract class ArticleSpecFactory extends SpecFactory<IArticleSpecProvider, IArticleSpec, ArticleCode> implements IArticleSpecFactory {
+    override notFoundProvider = new NotFoundArticleProvider();
+    override notFoundSpec = NotFoundArticleSpec.new();
+
+    static BuildProvidersFromRecords(records: Iterable<ProviderRecord>): Map<CODE, IArticleSpecProvider> {
+        const providers: Map<CODE, IArticleSpecProvider> = new Map(Array.from(records).map(x => {
+            return [x.article, new ArticleProviderConfig(x.article, x.concept, x.sums)];
+        }));
+        return providers
+
+    }
+}
