@@ -2,7 +2,7 @@ import {ArticleSpec} from "../registry_providers/ArticleSpec";
 import {ArticleCode} from "../service_types/ArticleCode";
 import {ConceptCode} from "../service_types/ConceptCode";
 import {ArticleSpecProvider} from "../registry_providers/ArticleSpecProvider";
-import {IPeriod} from "hravemzdy.legalios/dist";
+import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
 import {IArticleSpec} from "../service_interfaces/IArticleSpec";
 import {ISpecCode} from "../service_interfaces/ISpecCode";

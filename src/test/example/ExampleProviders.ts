@@ -1,4 +1,4 @@
-import {IPeriod, IBundleProps} from "hravemzdy.legalios/dist";
+import {IPeriod, IBundleProps} from "hravemzdy.legalios";
 import {ConceptSpec} from "../../proj/registry_providers/ConceptSpec";
 import {ConceptCode} from "../../proj/service_types/ConceptCode";
 import {IConceptSpec} from "../../proj/service_interfaces/IConceptSpec";

@@ -2,7 +2,7 @@ import {ISpecFactory} from "./ISpecFactory";
 import {ISpecProvider} from "../registry_providers/ISpecProvider";
 import {ISpecDefine} from "../service_interfaces/ISpecDefine";
 import {ISpecCode} from "../service_interfaces/ISpecCode";
-import {IPeriod} from "hravemzdy.legalios/dist";
+import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
 
 export type CODE = number;

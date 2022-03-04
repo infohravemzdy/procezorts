@@ -1,4 +1,4 @@
-import {IPeriod, Period, IBundleProps, BundleProps} from "hravemzdy.legalios/dist";
+import {IPeriod, Period, IBundleProps, BundleProps} from "hravemzdy.legalios";
 import { expect } from 'chai';
 import {ServiceExample} from "../example/ServiceExample";
 import {ArticleCode} from "../../proj/service_types/ArticleCode";

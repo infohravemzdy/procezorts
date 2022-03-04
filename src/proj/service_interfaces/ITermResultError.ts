@@ -1,5 +1,5 @@
 import {ITermTarget} from "./ITermTarget";
-import {IPeriod} from "hravemzdy.legalios/dist";
+import {IPeriod} from "hravemzdy.legalios";
 import {ContractCode} from "../service_types/ContractCode";
 import {PositionCode} from "../service_types/PositionCode";
 import {ArticleCode} from "../service_types/ArticleCode";

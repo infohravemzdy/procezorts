@@ -8,7 +8,7 @@ import {ConceptConst} from "../registry_constants/ConceptConst";
 import {ConceptCode} from "../service_types/ConceptCode";
 import {ArticleSpecProvider} from "../registry_providers/ArticleSpecProvider";
 import {ArticleConst} from "../registry_constants/ArticleConst";
-import {IPeriod} from "hravemzdy.legalios/dist";
+import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
 import {ArticleProviderConfig} from "./ArticleProviderConfig";
 

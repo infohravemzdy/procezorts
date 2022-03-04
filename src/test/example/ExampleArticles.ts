@@ -1,4 +1,4 @@
-import {IPeriod} from "hravemzdy.legalios/dist";
+import {IPeriod} from "hravemzdy.legalios";
 import {ArticleSpec} from "../../proj/registry_providers/ArticleSpec";
 import {ArticleSpecProvider} from "../../proj/registry_providers/ArticleSpecProvider";
 import {ArticleCode} from "../../proj/service_types/ArticleCode";

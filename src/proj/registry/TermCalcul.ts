@@ -1,7 +1,7 @@
 import {ITermTarget} from "../service_interfaces/ITermTarget";
 import {ResultFunc} from "../service_interfaces/IConceptSpec";
 import {TermSymbol} from "../service_types/TermSymbol";
-import {IPeriod, IBundleProps} from "hravemzdy.legalios/dist";
+import {IPeriod, IBundleProps} from "hravemzdy.legalios";
 import {BuilderResultList} from "../service_interfaces/ITermResult";
 import {TermResultError} from "../service_errors/TermResultError";
 import {Result} from "@badrap/result";

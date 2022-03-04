@@ -3,7 +3,7 @@ import {ConceptSpec} from "../registry_providers/ConceptSpec";
 import {ConceptConst} from "../registry_constants/ConceptConst";
 import {ConceptCode} from "../service_types/ConceptCode";
 import {ConceptSpecProvider} from "../registry_providers/ConceptSpecProvider";
-import {IPeriod} from "hravemzdy.legalios/dist";
+import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
 import {IConceptSpec} from "../service_interfaces/IConceptSpec";
 import {ArticleCode} from "../service_types/ArticleCode";

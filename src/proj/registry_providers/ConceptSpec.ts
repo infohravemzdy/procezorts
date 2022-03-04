@@ -2,7 +2,7 @@ import {IConceptSpec, ResultFunc} from "../service_interfaces/IConceptSpec";
 import {ConceptCode} from "../service_types/ConceptCode";
 import {ArticleCode} from "../service_types/ArticleCode";
 import {ITermTarget} from "../service_interfaces/ITermTarget";
-import {IPeriod} from "hravemzdy.legalios/dist";
+import {IPeriod} from "hravemzdy.legalios";
 import {BuilderResultList} from "../service_interfaces/ITermResult";
 import {MonthCode} from "../service_types/MonthCode";
 

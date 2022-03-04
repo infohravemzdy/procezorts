@@ -1,6 +1,6 @@
 import {IConceptSpecProvider} from "./IConceptSpecProvider";
 import {ConceptCode} from "../service_types/ConceptCode";
-import {IPeriod} from "hravemzdy.legalios/dist";
+import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
 import {IConceptSpec} from "../service_interfaces/IConceptSpec";
 

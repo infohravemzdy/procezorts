@@ -1,6 +1,6 @@
 import {VersionCode} from "../service_types/VersionCode";
 import {IArticleDefine} from "../service_interfaces/IArticleDefine";
-import {IPeriod, IBundleProps} from "hravemzdy.legalios/dist";
+import {IPeriod, IBundleProps} from "hravemzdy.legalios";
 import {ArticleCode} from "../service_types/ArticleCode";
 import {ConceptCode} from "../service_types/ConceptCode";
 import {IArticleSpec} from "../service_interfaces/IArticleSpec";

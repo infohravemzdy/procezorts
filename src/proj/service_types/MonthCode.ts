@@ -1,5 +1,5 @@
 import {ICodeValue} from "../service_interfaces/ICodeValue";
-import {IPeriod} from "hravemzdy.legalios/dist";
+import {IPeriod} from "hravemzdy.legalios";
 
 export class MonthCode implements ICodeValue<number> {
     static readonly ZERO_VALUE: number = 0;

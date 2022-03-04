@@ -1,6 +1,6 @@
 import {BuilderResultList} from "../service_interfaces/ITermResult";
 import {ITermTarget} from "./ITermTarget";
-import {IPeriod, IBundleProps} from "hravemzdy.legalios/dist";
+import {IPeriod, IBundleProps} from "hravemzdy.legalios";
 import {IConceptDefine} from "./IConceptDefine";
 import {ArticleCode} from "../service_types/ArticleCode";
 
