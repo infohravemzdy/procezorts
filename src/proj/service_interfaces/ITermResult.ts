@@ -3,13 +3,12 @@ import {ITermResultError} from "./ITermResultError";
 import {ITermSymbol} from "./ITermSymbol";
 import {ConceptCode} from "../service_types/ConceptCode";
 import {ITermTarget} from "./ITermTarget";
+import {IArticleSpec} from "./IArticleSpec";
 
 export interface ITermResult extends ITermSymbol {
     target: ITermTarget;
     concept: ConceptCode;
-    resultDescr: string;
-    resultBasis: number;
-    resultValue: number;
+    spec: IArticleSpec;
     conceptDescr(): String;
 }
 

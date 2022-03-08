@@ -202,7 +202,7 @@ export class ResultBuilder implements IResultBuilder {
         }
         return conceptSpec.resultDelegate;
     }
-    private NotFoundCalculFunc(target: ITermTarget, period: IPeriod, ruleset: IBundlePropsm, results: BuilderResultList): BuilderResultList {
+    private NotFoundCalculFunc(target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundlePropsm, results: BuilderResultList): BuilderResultList {
         const resultError = TermResultError.CreateNoResultFuncError(period, target);
         return new Array<BuilderResult>(Result.err(resultError));
     }

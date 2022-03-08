@@ -9,7 +9,7 @@ import {MonthCode} from "../../proj/service_types/MonthCode";
 import {ContractCode} from "../../proj/service_types/ContractCode";
 import {PositionCode} from "../../proj/service_types/PositionCode";
 import {VariantCode} from "../../proj/service_types/VariantCode";
-import {ExampleTermTarget} from "../example/ExampleResults";
+import {ExampleTermTarget} from "../example/ExampleConcepts";
 
 describe('Procezor Example - Salary-Bonus-Barter', () => {
     const getTargetsFromDb = function(period: IPeriod): Array<ITermTarget> {

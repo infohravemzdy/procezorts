@@ -17,7 +17,7 @@ import {
     TaxingAdvbaseResult,
     TaxingAdvpaymResult, TimeshtWorkingResult
 } from "./ExampleResults";
-import {ArticleCode} from "../../proj";
+import {ArticleCode, IArticleSpec} from "../../proj";
 
 export class ExampleResultConst {
     public static readonly VALUE_ZERO: number = 0
@@ -42,11 +42,8 @@ export class TimeshtWorkingConSpec extends ConceptSpec {
     static new(): TimeshtWorkingConSpec {
         return new TimeshtWorkingConSpec(ConceptCode.get(TimeshtWorkingConProv.CONCEPT_CODE));
     }
-    private static ConceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
-        const resultsValues: ITermResult = new TimeshtWorkingResult(target,
-            ExampleResultConst.VALUE_ZERO,
-            ExampleResultConst.BASIS_ZERO,
-            ExampleResultConst.DESCRIPTION_EMPTY);
+    private static ConceptEval(target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
+        const resultsValues: ITermResult = new TimeshtWorkingResult(target, spec);
 
         return new Array(Result.ok<ITermResult, ITermResultError>(resultsValues));
     }
@@ -72,11 +69,8 @@ export class AmountBasisConSpec extends ConceptSpec {
     static new(): AmountBasisConSpec {
         return new AmountBasisConSpec(ConceptCode.get(AmountBasisConProv.CONCEPT_CODE));
     }
-    private static ConceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
-        const resultsValues: ITermResult = new AmountBasisResult(target,
-            ExampleResultConst.VALUE_ZERO,
-            ExampleResultConst.BASIS_ZERO,
-            ExampleResultConst.DESCRIPTION_EMPTY);
+    private static ConceptEval(target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
+        const resultsValues: ITermResult = new AmountBasisResult(target, spec);
 
         return new Array(Result.ok<ITermResult, ITermResultError>(resultsValues));
     }
@@ -99,11 +93,8 @@ export class AmountFixedConSpec extends ConceptSpec {
     static new(): AmountFixedConSpec {
         return new AmountFixedConSpec(ConceptCode.get(AmountFixedConProv.CONCEPT_CODE));
     }
-    private static ConceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
-        const resultsValues: ITermResult = new AmountFixedResult(target,
-            ExampleResultConst.VALUE_ZERO,
-            ExampleResultConst.BASIS_ZERO,
-            ExampleResultConst.DESCRIPTION_EMPTY);
+    private static ConceptEval(target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
+        const resultsValues: ITermResult = new AmountFixedResult(target, spec);
 
         return new Array(Result.ok<ITermResult, ITermResultError>(resultsValues));
     }
@@ -126,11 +117,8 @@ export class HealthInsbaseConSpec extends ConceptSpec {
     static new(): HealthInsbaseConSpec {
         return new HealthInsbaseConSpec(ConceptCode.get(HealthInsbaseConProv.CONCEPT_CODE));
     }
-    private static ConceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
-        const resultsValues: ITermResult = new HealthInsbaseResult(target,
-            ExampleResultConst.VALUE_ZERO,
-            ExampleResultConst.BASIS_ZERO,
-            ExampleResultConst.DESCRIPTION_EMPTY);
+    private static ConceptEval(target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
+        const resultsValues: ITermResult = new HealthInsbaseResult(target, spec);
 
         return new Array(Result.ok<ITermResult, ITermResultError>(resultsValues));
     }
@@ -153,11 +141,8 @@ export class SocialInsbaseConSpec extends ConceptSpec {
     static new(): SocialInsbaseConSpec {
         return new SocialInsbaseConSpec(ConceptCode.get(SocialInsbaseConProv.CONCEPT_CODE));
     }
-    private static ConceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
-        const resultsValues: ITermResult = new SocialInsbaseResult(target,
-            ExampleResultConst.VALUE_ZERO,
-            ExampleResultConst.BASIS_ZERO,
-            ExampleResultConst.DESCRIPTION_EMPTY);
+    private static ConceptEval(target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
+        const resultsValues: ITermResult = new SocialInsbaseResult(target, spec);
 
         return new Array(Result.ok<ITermResult, ITermResultError>(resultsValues));
     }
@@ -183,11 +168,8 @@ export class HealthInspaymConSpec extends ConceptSpec {
     static new(): HealthInspaymConSpec {
         return new HealthInspaymConSpec(ConceptCode.get(HealthInspaymConProv.CONCEPT_CODE));
     }
-    private static ConceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
-        const resultsValues: ITermResult = new HealthInspaymResult(target,
-            ExampleResultConst.VALUE_ZERO,
-            ExampleResultConst.BASIS_ZERO,
-            ExampleResultConst.DESCRIPTION_EMPTY);
+    private static ConceptEval(target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
+        const resultsValues: ITermResult = new HealthInspaymResult(target, spec);
 
         return new Array(Result.ok<ITermResult, ITermResultError>(resultsValues));
     }
@@ -213,11 +195,8 @@ export class SocialInspaymConSpec extends ConceptSpec {
     static new(): SocialInspaymConSpec {
         return new SocialInspaymConSpec(ConceptCode.get(SocialInspaymConProv.CONCEPT_CODE));
     }
-    private static ConceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
-        const resultsValues: ITermResult = new SocialInspaymResult(target,
-            ExampleResultConst.VALUE_ZERO,
-            ExampleResultConst.BASIS_ZERO,
-            ExampleResultConst.DESCRIPTION_EMPTY);
+    private static ConceptEval(target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
+        const resultsValues: ITermResult = new SocialInspaymResult(target, spec);
 
         return new Array(Result.ok<ITermResult, ITermResultError>(resultsValues));
     }
@@ -240,11 +219,8 @@ export class TaxingAdvbaseConSpec extends ConceptSpec {
     static new(): TaxingAdvbaseConSpec {
         return new TaxingAdvbaseConSpec(ConceptCode.get(TaxingAdvbaseConProv.CONCEPT_CODE));
     }
-    private static ConceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
-        const resultsValues: ITermResult = new TaxingAdvbaseResult(target,
-            ExampleResultConst.VALUE_ZERO,
-            ExampleResultConst.BASIS_ZERO,
-            ExampleResultConst.DESCRIPTION_EMPTY);
+    private static ConceptEval(target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
+        const resultsValues: ITermResult = new TaxingAdvbaseResult(target, spec);
 
         return new Array(Result.ok<ITermResult, ITermResultError>(resultsValues));
     }
@@ -270,11 +246,8 @@ export class TaxingAdvpaymConSpec extends ConceptSpec {
     static new(): TaxingAdvpaymConSpec {
         return new TaxingAdvpaymConSpec(ConceptCode.get(TaxingAdvpaymConProv.CONCEPT_CODE));
     }
-    private static ConceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
-        const resultsValues: ITermResult = new TaxingAdvpaymResult(target,
-            ExampleResultConst.VALUE_ZERO,
-            ExampleResultConst.BASIS_ZERO,
-            ExampleResultConst.DESCRIPTION_EMPTY);
+    private static ConceptEval(target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
+        const resultsValues: ITermResult = new TaxingAdvpaymResult(target, spec);
 
         return new Array(Result.ok<ITermResult, ITermResultError>(resultsValues));
     }
@@ -297,11 +270,8 @@ export class IncomeGrossConSpec extends ConceptSpec {
     static new(): IncomeGrossConSpec {
         return new IncomeGrossConSpec(ConceptCode.get(IncomeGrossConProv.CONCEPT_CODE));
     }
-    private static ConceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
-        const resultsValues: ITermResult = new IncomeGrossResult(target,
-            ExampleResultConst.VALUE_ZERO,
-            ExampleResultConst.BASIS_ZERO,
-            ExampleResultConst.DESCRIPTION_EMPTY);
+    private static ConceptEval(target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
+        const resultsValues: ITermResult = new IncomeGrossResult(target, spec);
 
         return new Array(Result.ok<ITermResult, ITermResultError>(resultsValues));
     }
@@ -330,11 +300,8 @@ export class IncomeNettoConSpec extends ConceptSpec {
     static new(): IncomeNettoConSpec {
         return new IncomeNettoConSpec(ConceptCode.get(IncomeNettoConProv.CONCEPT_CODE));
     }
-    private static ConceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
-        const resultsValues: ITermResult = new IncomeNettoResult(target,
-            ExampleResultConst.VALUE_ZERO,
-            ExampleResultConst.BASIS_ZERO,
-            ExampleResultConst.DESCRIPTION_EMPTY);
+    private static ConceptEval(target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList {
+        const resultsValues: ITermResult = new IncomeNettoResult(target, spec);
 
         return new Array(Result.ok<ITermResult, ITermResultError>(resultsValues));
     }

@@ -7,6 +7,7 @@ export class ArticleCode implements ISpecCode {
     constructor(code: number) {
         this.value = code;
     }
+    static zero(): ArticleCode {return ArticleCode.new(); }
     static new(): ArticleCode {return new ArticleCode(ArticleCode.ZERO_VALUE); }
     static get(value: number): ArticleCode {return new ArticleCode(value); }
 }

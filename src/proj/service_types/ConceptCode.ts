@@ -7,6 +7,7 @@ export class ConceptCode implements ISpecCode {
     constructor(code: number) {
         this.value = code;
     }
+    static zero(): ConceptCode {return ConceptCode.new(); }
     static new(): ConceptCode {return new ConceptCode(ConceptCode.ZERO_VALUE); }
     static get(value: number): ConceptCode {return new ConceptCode(value); }
 }

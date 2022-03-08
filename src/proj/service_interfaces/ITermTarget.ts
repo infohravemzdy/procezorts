@@ -4,9 +4,6 @@ import {ITermSymbol} from "./ITermSymbol";
 
 export interface ITermTarget extends ITermSymbol {
     concept: ConceptCode
-    targetBasis: number
-    targetDescr: string
-    get_defs(): IArticleDefine
     conceptDescr(): String
 }
 

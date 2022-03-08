@@ -7,6 +7,7 @@ export class ContractCode implements ICodeValue<number> {
     constructor(code: number) {
         this.value = code;
     }
+    static zero(): ContractCode {return ContractCode.new(); }
     static new(): ContractCode {return new ContractCode(ContractCode.ZERO_VALUE); }
     static get(value: number): ContractCode {return new ContractCode(value); }
 }

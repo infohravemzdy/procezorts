@@ -7,6 +7,7 @@ export class VariantCode implements ICodeValue<number> {
     constructor(code: number) {
         this.value = code;
     }
+    static zero(): VariantCode {return VariantCode.new(); }
     static new(): VariantCode {return new VariantCode(VariantCode.ZERO_VALUE); }
     static get(value: number): VariantCode {return new VariantCode(value); }
 }
