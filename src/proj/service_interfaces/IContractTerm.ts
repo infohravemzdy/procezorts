@@ -1,4 +1,5 @@
 import {ContractCode} from "../service_types/ContractCode";
+import {ITermTarget} from "./ITermTarget";
 
 export interface IContractTerm {
     contract: ContractCode
@@ -8,3 +9,5 @@ export interface IContractTerm {
     termDayStop: number
     isActive(): Boolean
 }
+
+export type IContractTermList = Iterable<IContractTerm>;

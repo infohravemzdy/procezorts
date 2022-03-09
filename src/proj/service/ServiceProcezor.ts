@@ -10,31 +10,52 @@ import {BuilderResult, BuilderResultList} from "../service_interfaces/ITermResul
 import {IResultBuilder, ResultBuilder} from "../registry/ResultBuilder";
 import {IArticleSpecFactory} from "../registry_factories/IArticleSpecFactory";
 import {IConceptSpecFactory} from "../registry_factories/IConceptSpecFactory";
-import {ArticleDefine} from "../service_types/ArticleDafine";
+import {ArticleTerm} from "../service_types/ArticleTerm";
+import {IContractTermList} from "../service_interfaces/IContractTerm";
+import {IPositionTermList} from "../service_interfaces/IPositionTerm";
 
 export interface IServiceProcezor {
-    version: VersionCode
-    finDefs: IArticleDefine
+    version: VersionCode;
+    calcArticles: Iterable<ArticleCode>;
 
-    InitWithPeriod(period: IPeriod): Boolean
-    BuildFactories(): Boolean
-    GetResults(period: IPeriod, ruleset: IBundleProps, targets: ITermTargetList): BuilderResultList
-    GetArticleSpec(code: ArticleCode, period: IPeriod, version: VersionCode): IArticleSpec
-    GetConceptSpec(code: ConceptCode, period: IPeriod, version: VersionCode): IConceptSpec
+    BuilderOrder() : Iterable<ArticleTerm>;
+    BuilderPaths() : Map<ArticleTerm, Iterable<IArticleDefine>>;
+
+    GetContractTerms(period: IPeriod, targets: ITermTargetList) : IContractTermList;
+    GetPositionTerms(period: IPeriod, contracts: IContractTermList, targets: ITermTargetList) : IPositionTermList;
+
+    GetResults(period: IPeriod, ruleset: IBundleProps, targets: ITermTargetList): BuilderResultList;
+    InitWithPeriod(period: IPeriod): Boolean;
+    BuildFactories(): Boolean;
+    GetArticleSpec(code: ArticleCode, period: IPeriod, version: VersionCode): IArticleSpec;
+    GetConceptSpec(code: ConceptCode, period: IPeriod, version: VersionCode): IConceptSpec;
 }
 
 export abstract class ServiceProcezor implements IServiceProcezor {
     version: VersionCode;
-    finDefs: IArticleDefine;
+    calcArticles: Iterable<ArticleCode>;
 
     private Builder: IResultBuilder = new ResultBuilder();
     protected ArticleFactory: IArticleSpecFactory = null;
     protected ConceptFactory: IConceptSpecFactory = null;
 
-    protected constructor(_version: number, _finDefs: IArticleDefine) {
+    protected constructor(_version: number, _calcArticles: Iterable<ArticleCode>) {
         this.version = VersionCode.get(_version);
-        this.finDefs = ArticleDefine.copy(_finDefs);
+        this.calcArticles = Array.from(_calcArticles);
         this.BuildFactories();
+    }
+    BuilderOrder() : Iterable<ArticleTerm> {
+        return this.Builder.ArticleOrder
+    }
+    BuilderPaths() : Map<ArticleTerm, Iterable<IArticleDefine>> {
+        return this.Builder.ArticlePaths
+    }
+
+    GetContractTerms(period: IPeriod, targets: ITermTargetList) : IContractTermList {
+        return [];
+    }
+    GetPositionTerms(period: IPeriod, contracts: IContractTermList, targets: ITermTargetList) : IPositionTermList {
+        return [];
     }
     GetResults(period: IPeriod, ruleset: IBundleProps, targets: ITermTargetList): BuilderResultList {
         let results: BuilderResultList = new Array<BuilderResult>();
@@ -44,8 +65,13 @@ export abstract class ServiceProcezor implements IServiceProcezor {
         if (!success) {
             return results;
         }
+
+        const contractTerms = this.GetContractTerms(period, targets);
+        const positionTerms = this.GetPositionTerms(period, contractTerms, targets);
+
         if (this.Builder != null) {
-            results = this.Builder.GetResults(ruleset, targets, this.finDefs);
+            results = this.Builder.GetResults(ruleset,
+                contractTerms, positionTerms, targets, this.calcArticles);
         }
         return results;
     }

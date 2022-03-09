@@ -13,48 +13,49 @@ import {
 } from "./ExampleProviders";
 
 export class ExampleArticleFactory extends ArticleSpecFactory {
+    private static ARTICLE_DEFAULT_SEQUENS: number = 0;
     private providersConfig: Array<ProviderRecord> = [
-        new ProviderRecord(ExampleArticleConst.ARTICLE_TIMESHT_WORKING, ExampleConceptConst.CONCEPT_TIMESHT_WORKING,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_TIMESHT_WORKING, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_TIMESHT_WORKING,
             []),
-        new ProviderRecord(ExampleArticleConst.ARTICLE_PAYMENT_SALARY, ExampleConceptConst.CONCEPT_AMOUNT_BASIS,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_PAYMENT_SALARY, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_AMOUNT_BASIS,
             [
                 ExampleArticleConst.ARTICLE_INCOME_GROSS,
                 ExampleArticleConst.ARTICLE_HEALTH_INSBASE,
                 ExampleArticleConst.ARTICLE_SOCIAL_INSBASE,
                 ExampleArticleConst.ARTICLE_TAXING_ADVBASE,
             ]),
-        new ProviderRecord(ExampleArticleConst.ARTICLE_PAYMENT_BONUS, ExampleConceptConst.CONCEPT_AMOUNT_FIXED,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_PAYMENT_BONUS, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_AMOUNT_FIXED,
             [
                 ExampleArticleConst.ARTICLE_INCOME_GROSS,
                 ExampleArticleConst.ARTICLE_HEALTH_INSBASE,
                 ExampleArticleConst.ARTICLE_SOCIAL_INSBASE,
                 ExampleArticleConst.ARTICLE_TAXING_ADVBASE,
             ]),
-        new ProviderRecord(ExampleArticleConst.ARTICLE_PAYMENT_BARTER, ExampleConceptConst.CONCEPT_AMOUNT_FIXED,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_PAYMENT_BARTER, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_AMOUNT_FIXED,
             [
                 ExampleArticleConst.ARTICLE_HEALTH_INSBASE,
                 ExampleArticleConst.ARTICLE_SOCIAL_INSBASE,
                 ExampleArticleConst.ARTICLE_TAXING_ADVBASE,
             ]),
-        new ProviderRecord(ExampleArticleConst.ARTICLE_ALLOWCE_HOFFICE, ExampleConceptConst.CONCEPT_AMOUNT_FIXED,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_ALLOWCE_HOFFICE, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_AMOUNT_FIXED,
             [
                 ExampleArticleConst.ARTICLE_INCOME_NETTO,
             ]),
-        new ProviderRecord(ExampleArticleConst.ARTICLE_HEALTH_INSBASE, ExampleConceptConst.CONCEPT_HEALTH_INSBASE,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_HEALTH_INSBASE, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_HEALTH_INSBASE,
             []),
-        new ProviderRecord(ExampleArticleConst.ARTICLE_SOCIAL_INSBASE, ExampleConceptConst.CONCEPT_SOCIAL_INSBASE,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_SOCIAL_INSBASE, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_SOCIAL_INSBASE,
             []),
-        new ProviderRecord(ExampleArticleConst.ARTICLE_HEALTH_INSPAYM, ExampleConceptConst.CONCEPT_HEALTH_INSPAYM,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_HEALTH_INSPAYM, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_HEALTH_INSPAYM,
             []),
-        new ProviderRecord(ExampleArticleConst.ARTICLE_SOCIAL_INSPAYM, ExampleConceptConst.CONCEPT_SOCIAL_INSPAYM,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_SOCIAL_INSPAYM, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_SOCIAL_INSPAYM,
             []),
-        new ProviderRecord(ExampleArticleConst.ARTICLE_TAXING_ADVBASE, ExampleConceptConst.CONCEPT_TAXING_ADVBASE,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_TAXING_ADVBASE, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_TAXING_ADVBASE,
             []),
-        new ProviderRecord(ExampleArticleConst.ARTICLE_TAXING_ADVPAYM, ExampleConceptConst.CONCEPT_TAXING_ADVPAYM,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_TAXING_ADVPAYM, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_TAXING_ADVPAYM,
             []),
-        new ProviderRecord(ExampleArticleConst.ARTICLE_INCOME_GROSS, ExampleConceptConst.CONCEPT_INCOME_GROSS,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_INCOME_GROSS, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_INCOME_GROSS,
             []),
-        new ProviderRecord(ExampleArticleConst.ARTICLE_INCOME_NETTO, ExampleConceptConst.CONCEPT_INCOME_NETTO,
+        new ProviderRecord(ExampleArticleConst.ARTICLE_INCOME_NETTO, ExampleArticleFactory.ARTICLE_DEFAULT_SEQUENS, ExampleConceptConst.CONCEPT_INCOME_NETTO,
             []),
     ];
 

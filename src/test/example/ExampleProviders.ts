@@ -19,12 +19,6 @@ import {
 } from "./ExampleResults";
 import {ArticleCode, IArticleSpec} from "../../proj";
 
-export class ExampleResultConst {
-    public static readonly VALUE_ZERO: number = 0
-    public static readonly BASIS_ZERO: number = 0
-    public static readonly DESCRIPTION_EMPTY: string = "result from input value"
-}
-
 export class TimeshtWorkingConProv extends ConceptSpecProvider {
     static CONCEPT_CODE = ExampleConceptConst.CONCEPT_TIMESHT_WORKING;
     constructor() {

@@ -3,17 +3,17 @@ import {ExampleArticleConst, ExampleConceptConst} from "./ExampleConstants";
 import {IArticleDefine} from "../../proj/service_interfaces/IArticleDefine";
 import {ArticleDefine} from "../../proj/service_types/ArticleDafine";
 import {ExampleArticleFactory, ExampleConceptFactory} from "./ExampleFactories";
+import {ArticleCode} from "../../proj";
 
 export class ServiceExample extends ServiceProcezor {
     private static readonly TEST_VERSION: number = 100;
     private static readonly TEST_FINAL_ARTICLE: number = ExampleArticleConst.ARTICLE_INCOME_NETTO;
-    private static readonly TEST_FINAL_CONCEPT: number = ExampleConceptConst.CONCEPT_INCOME_NETTO;
 
-    private static readonly TEST_FINAL_DEFS: IArticleDefine =
-        ArticleDefine.get(ServiceExample.TEST_FINAL_ARTICLE, ServiceExample.TEST_FINAL_CONCEPT);
+    private static readonly TEST_CALCS_ARTICLE: Iterable<ArticleCode> =
+        [ArticleCode.get(ServiceExample.TEST_FINAL_ARTICLE)];
 
     constructor() {
-        super(ServiceExample.TEST_VERSION, ServiceExample.TEST_FINAL_DEFS);
+        super(ServiceExample.TEST_VERSION, ServiceExample.TEST_CALCS_ARTICLE);
     }
 
     BuildArticleFactory(): boolean {

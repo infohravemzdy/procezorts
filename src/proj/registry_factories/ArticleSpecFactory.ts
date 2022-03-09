@@ -11,11 +11,12 @@ import {ArticleConst} from "../registry_constants/ArticleConst";
 import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
 import {ArticleProviderConfig} from "./ArticleProviderConfig";
+import {ArticleSeqs} from "../service_types/ArticleSeqs";
 
 class NotFoundArticleSpec extends ArticleSpec {
     static CONCEPT_CODE = ConceptConst.CONCEPT_NOTFOUND;
     constructor(_code: ArticleCode) {
-        super(_code, ConceptCode.get(NotFoundArticleSpec.CONCEPT_CODE), Array<ArticleCode>())
+        super(_code, ArticleSeqs.zero(), ConceptCode.get(NotFoundArticleSpec.CONCEPT_CODE), Array<ArticleCode>())
     }
     static new(): NotFoundArticleSpec {
         return new NotFoundArticleSpec(ArticleCode.get(NotFoundArticleProvider.ARTICLE_CODE));
@@ -36,11 +37,13 @@ class NotFoundArticleProvider extends ArticleSpecProvider {
 
 export class ProviderRecord {
     article: number;
+    sequens: number;
     concept: number;
     sums: Iterable<number>;
 
-    constructor(_article: number, _concept: number, _sums: Iterable<number>) {
+    constructor(_article: number, _sequens: number, _concept: number, _sums: Iterable<number>) {
         this.article = _article;
+        this.sequens = _sequens;
         this.concept = _concept;
         this.sums = Array.from(_sums);
     }
@@ -52,7 +55,7 @@ export abstract class ArticleSpecFactory extends SpecFactory<IArticleSpecProvide
 
     static BuildProvidersFromRecords(records: Iterable<ProviderRecord>): Map<CODE, IArticleSpecProvider> {
         const providers: Map<CODE, IArticleSpecProvider> = new Map(Array.from(records).map(x => {
-            return [x.article, new ArticleProviderConfig(x.article, x.concept, x.sums)];
+            return [x.article, new ArticleProviderConfig(x.article, x.sequens, x.concept, x.sums)];
         }));
         return providers
 

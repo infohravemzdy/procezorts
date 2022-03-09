@@ -12,3 +12,5 @@ export interface IPositionTerm {
     termDayStop: number
     isActive(): Boolean
 }
+
+export type IPositionTermList = Iterable<IPositionTerm>;

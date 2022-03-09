@@ -4,8 +4,8 @@ import {ConceptCode} from "../service_types/ConceptCode";
 import {ArticleCode} from "../service_types/ArticleCode";
 import {IPeriod} from "hravemzdy.legalios";
 import {MonthCode} from "../service_types/MonthCode";
-import {IContractTerm} from "../service_interfaces/IContractTerm";
-import {IPositionTerm} from "../service_interfaces/IPositionTerm";
+import {IContractTermList} from "../service_interfaces/IContractTerm";
+import {IPositionTermList} from "../service_interfaces/IPositionTerm";
 import {ITermTarget, ITermTargetList} from "../service_interfaces/ITermTarget";
 import {VariantCode} from "../service_types/VariantCode";
 import {ContractCode} from "../service_types/ContractCode";
@@ -26,12 +26,12 @@ export abstract class ConceptSpec implements IConceptSpec {
         return MonthCode.get(period.code)
     }
     defaultTargetList(article: ArticleCode, period: IPeriod, ruleset: IBundleProps, month: MonthCode,
-                      contractTerms: Iterable<IContractTerm>, positionTerms: Iterable<IPositionTerm>,
+                      contractTerms: IContractTermList, positionTerms: IPositionTermList,
                       targets: ITermTargetList, vars: VariantCode) : ITermTargetList {
         const con = ContractCode.zero()
         const pos = PositionCode.zero()
 
-        const targetsLength = Array(targets).length;
+        const targetsLength = Array.from(targets).length;
         if (targetsLength!=0) {
             return Array<ITermTarget>()
         }
