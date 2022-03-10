@@ -43,6 +43,7 @@ export class TimeshtWorkingConSpec extends ConceptSpec {
     }
 }
 
+// AmountBasis		AMOUNT_BASIS
 export class AmountBasisConProv extends ConceptSpecProvider {
     static CONCEPT_CODE = ExampleConceptConst.CONCEPT_AMOUNT_BASIS;
     constructor() {
@@ -70,6 +71,7 @@ export class AmountBasisConSpec extends ConceptSpec {
     }
 }
 
+// AmountFixed		AMOUNT_FIXED
 export class AmountFixedConProv extends ConceptSpecProvider {
     static CONCEPT_CODE = ExampleConceptConst.CONCEPT_AMOUNT_FIXED;
     constructor() {
@@ -94,6 +96,7 @@ export class AmountFixedConSpec extends ConceptSpec {
     }
 }
 
+// HealthInsbase		HEALTH_INSBASE
 export class HealthInsbaseConProv extends ConceptSpecProvider {
     static CONCEPT_CODE = ExampleConceptConst.CONCEPT_HEALTH_INSBASE;
     constructor() {
@@ -118,6 +121,7 @@ export class HealthInsbaseConSpec extends ConceptSpec {
     }
 }
 
+// SocialInsbase		SOCIAL_INSBASE
 export class SocialInsbaseConProv extends ConceptSpecProvider {
     static CONCEPT_CODE = ExampleConceptConst.CONCEPT_SOCIAL_INSBASE;
     constructor() {
@@ -142,6 +146,7 @@ export class SocialInsbaseConSpec extends ConceptSpec {
     }
 }
 
+// HealthInspaym		HEALTH_INSPAYM
 export class HealthInspaymConProv extends ConceptSpecProvider {
     static CONCEPT_CODE = ExampleConceptConst.CONCEPT_HEALTH_INSPAYM;
     constructor() {
@@ -169,6 +174,7 @@ export class HealthInspaymConSpec extends ConceptSpec {
     }
 }
 
+// SocialInspaym		SOCIAL_INSPAYM
 export class SocialInspaymConProv extends ConceptSpecProvider {
     static CONCEPT_CODE = ExampleConceptConst.CONCEPT_SOCIAL_INSPAYM;
     constructor() {
@@ -196,6 +202,7 @@ export class SocialInspaymConSpec extends ConceptSpec {
     }
 }
 
+// TaxingAdvbase		TAXING_ADVBASE
 export class TaxingAdvbaseConProv extends ConceptSpecProvider {
     static CONCEPT_CODE = ExampleConceptConst.CONCEPT_TAXING_ADVBASE;
     constructor() {
@@ -220,6 +227,7 @@ export class TaxingAdvbaseConSpec extends ConceptSpec {
     }
 }
 
+// TaxingAdvpaym		TAXING_ADVPAYM
 export class TaxingAdvpaymConProv extends ConceptSpecProvider {
     static CONCEPT_CODE = ExampleConceptConst.CONCEPT_TAXING_ADVPAYM;
     constructor() {
@@ -247,6 +255,7 @@ export class TaxingAdvpaymConSpec extends ConceptSpec {
     }
 }
 
+// IncomeGross		INCOME_GROSS
 export class IncomeGrossConProv extends ConceptSpecProvider {
     static CONCEPT_CODE = ExampleConceptConst.CONCEPT_INCOME_GROSS;
     constructor() {
@@ -271,6 +280,7 @@ export class IncomeGrossConSpec extends ConceptSpec {
     }
 }
 
+// IncomeNetto		INCOME_NETTO
 export class IncomeNettoConProv extends ConceptSpecProvider {
     static CONCEPT_CODE = ExampleConceptConst.CONCEPT_INCOME_NETTO;
     constructor() {
