@@ -42,7 +42,6 @@ export abstract class ServiceProcezor implements IServiceProcezor {
     protected constructor(_version: number, _calcArticles: Iterable<ArticleCode>) {
         this.version = VersionCode.get(_version);
         this.calcArticles = Array.from(_calcArticles);
-        this.BuildFactories();
     }
     BuilderOrder() : Iterable<ArticleTerm> {
         return this.Builder.ArticleOrder
@@ -93,6 +92,9 @@ export abstract class ServiceProcezor implements IServiceProcezor {
             initResult = this.Builder.InitWithPeriod(this.version, period, this.ArticleFactory, this.ConceptFactory);
         }
 
+        if (initResult == false) {
+            console.log(`Period: ${period.code}, init with period failed`)
+        }
         return initResult;
     }
 
@@ -101,6 +103,10 @@ export abstract class ServiceProcezor implements IServiceProcezor {
 
         const conceptFactorySuccess: boolean = this.BuildConceptFactory();
 
+        const buildSuccess := this.BuildFactories();
+        if (!(articleFactorySuccess && conceptFactorySuccess)) {
+            console.log(`ServiceProcezor::BuildFactories(): Version: ${this.version}, build factories failed`);
+        }
         return articleFactorySuccess && conceptFactorySuccess;
     }
 

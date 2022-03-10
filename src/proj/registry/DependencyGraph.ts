@@ -204,8 +204,10 @@ export class DependencyGraph {
                 }
             });
         }
-        if (index != Array.from(vertModel).length)
+        const modelLength = Array.from(vertModel).length;
+        if (index != modelLength)
         {
+            console.log(`CreateTopoModel, build graph failed: ${index}<>${modelLength}`);
             return new Array<ArticleTerm>();
         }
         return articlesOrder;

@@ -14,6 +14,11 @@ export class ServiceExample extends ServiceProcezor {
 
     constructor() {
         super(ServiceExample.TEST_VERSION, ServiceExample.TEST_CALCS_ARTICLE);
+
+        const buildSuccess = this.BuildFactories();
+        if (buildSuccess == false) {
+            console.log(`Version: ${this.version}, build factories failed`);
+        }
     }
 
     BuildArticleFactory(): boolean {
