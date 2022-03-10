@@ -103,9 +103,8 @@ export abstract class ServiceProcezor implements IServiceProcezor {
 
         const conceptFactorySuccess: boolean = this.BuildConceptFactory();
 
-        const buildSuccess := this.BuildFactories();
         if (!(articleFactorySuccess && conceptFactorySuccess)) {
-            console.log(`ServiceProcezor::BuildFactories(): Version: ${this.version}, build factories failed`);
+            console.log(`Version: ${this.version}, build factories failed`);
         }
         return articleFactorySuccess && conceptFactorySuccess;
     }
