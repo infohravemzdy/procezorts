@@ -13,6 +13,7 @@ import {IConceptSpecFactory} from "../registry_factories/IConceptSpecFactory";
 import {ArticleTerm} from "../service_types/ArticleTerm";
 import {IContractTermList} from "../service_interfaces/IContractTerm";
 import {IPositionTermList} from "../service_interfaces/IPositionTerm";
+import {logError} from "typings/dist/support/cli";
 
 export interface IServiceProcezor {
     version: VersionCode;
@@ -25,8 +26,8 @@ export interface IServiceProcezor {
     GetPositionTerms(period: IPeriod, contracts: IContractTermList, targets: ITermTargetList) : IPositionTermList;
 
     GetResults(period: IPeriod, ruleset: IBundleProps, targets: ITermTargetList): BuilderResultList;
-    InitWithPeriod(period: IPeriod): Boolean;
-    BuildFactories(): Boolean;
+    InitWithPeriod(period: IPeriod): boolean;
+    BuildFactories(): boolean;
     GetArticleSpec(code: ArticleCode, period: IPeriod, version: VersionCode): IArticleSpec;
     GetConceptSpec(code: ConceptCode, period: IPeriod, version: VersionCode): IConceptSpec;
 }
@@ -59,7 +60,7 @@ export abstract class ServiceProcezor implements IServiceProcezor {
     GetResults(period: IPeriod, ruleset: IBundleProps, targets: ITermTargetList): BuilderResultList {
         let results: BuilderResultList = new Array<BuilderResult>();
 
-        let success: boolean = this.InitWithPeriod(period);
+        const success: boolean = this.InitWithPeriod(period);
 
         if (!success) {
             return results;
@@ -68,7 +69,7 @@ export abstract class ServiceProcezor implements IServiceProcezor {
         const contractTerms = this.GetContractTerms(period, targets);
         const positionTerms = this.GetPositionTerms(period, contractTerms, targets);
 
-        if (this.Builder != null) {
+        if (this.Builder !== null) {
             results = this.Builder.GetResults(ruleset,
                 contractTerms, positionTerms, targets, this.calcArticles);
         }
@@ -78,22 +79,22 @@ export abstract class ServiceProcezor implements IServiceProcezor {
     InitWithPeriod(period: IPeriod): boolean {
         let initResult: boolean = false;
 
-        if (this.Builder != null) {
+        if (this.Builder !== null) {
             initResult = true;
         }
 
         let initBuilder: boolean = false;
 
-        if (this.Builder != null) {
+        if (this.Builder !== null) {
             initBuilder = this.Builder.PeriodInit !== period;
         }
 
-        if (initBuilder && this.ArticleFactory != null && this.ConceptFactory != null) {
+        if (initBuilder && this.ArticleFactory !== null && this.ConceptFactory !== null) {
             initResult = this.Builder.InitWithPeriod(this.version, period, this.ArticleFactory, this.ConceptFactory);
         }
 
-        if (initResult == false) {
-            console.log(`Period: ${period.code}, init with period failed`)
+        if (initResult === false) {
+            logError(`Period: ${period.code}, init with period failed`)
         }
         return initResult;
     }
@@ -104,20 +105,20 @@ export abstract class ServiceProcezor implements IServiceProcezor {
         const conceptFactorySuccess: boolean = this.BuildConceptFactory();
 
         if (!(articleFactorySuccess && conceptFactorySuccess)) {
-            console.log(`Version: ${this.version}, build factories failed`);
+            logError(`Version: ${this.version}, build factories failed`);
         }
         return articleFactorySuccess && conceptFactorySuccess;
     }
 
     GetArticleSpec(code: ArticleCode, period: IPeriod, version: VersionCode): IArticleSpec {
-        if  (this.ArticleFactory == null) {
+        if  (this.ArticleFactory === null) {
             return null;
         }
         return this.ArticleFactory.GetSpec(code, period, version);
     }
 
     GetConceptSpec(code: ConceptCode, period: IPeriod, version: VersionCode): IConceptSpec {
-        if  (this.ConceptFactory == null) {
+        if  (this.ConceptFactory === null) {
             return null;
         }
         return this.ConceptFactory.GetSpec(code, period, version);

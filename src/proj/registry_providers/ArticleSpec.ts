@@ -11,7 +11,7 @@ export abstract class ArticleSpec implements IArticleSpec {
     code: ArticleCode;
     seqs: ArticleSeqs;
     role: ConceptCode;
-    sums: Array<ArticleCode>;
+    sums: ArticleCode[];
 
     protected constructor(_code: ArticleCode, _seqs: ArticleSeqs, _role: ConceptCode, _sums: Iterable<ArticleCode>) {
         this.code = _code;

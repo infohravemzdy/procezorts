@@ -10,7 +10,7 @@ export interface IPositionTerm {
     dateStop: Date
     termDayFrom: number
     termDayStop: number
-    isActive(): Boolean
+    isActive(): boolean
 }
 
 export type IPositionTermList = Iterable<IPositionTerm>;

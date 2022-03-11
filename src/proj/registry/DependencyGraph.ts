@@ -6,6 +6,7 @@ import {ArticleDefine} from "../service_types/ArticleDafine";
 import {ISpecCode} from "../service_interfaces/ISpecCode";
 import {ConceptCode} from "../service_types/ConceptCode";
 import {ArticleTerm} from "../service_types/ArticleTerm";
+import {logError} from "typings/dist/support/cli";
 
 class ArticleEdge {
     start: ArticleTerm;
@@ -21,9 +22,9 @@ class QueueTerm {
     constructor(items: Iterable<ArticleTerm>) {
         this.elements = Array.from(items);
     }
-    elements: Array<ArticleTerm> = new Array();
+    elements: ArticleTerm[] = new Array();
     isEmpty(): boolean {
-        return this.elements.length == 0;
+        return this.elements.length === 0;
     }
     count(): number {
         return this.elements.length;
@@ -46,27 +47,26 @@ class QueueTerm {
 }
 
 export class DependencyGraph {
-    private static firstOrDefaultCode =
-        function<T extends ISpecCode> (array: Array<T>, item: T): T | undefined {
-            return array.find(x => (x.value == item.value));
+    private static firstOrDefaultCode = <T extends ISpecCode>(array: T[], item: T): T | undefined => {
+            return array.find(x => (x.value === item.value));
         };
-    private static articleDefsDistinctSort(array: Array<IArticleDefine>, termOrder: Array<ArticleTerm>): Array<IArticleDefine> {
-        const codeOrder: Array<ArticleCode> = termOrder.map(x => x.code);
+    private static articleDefsDistinctSort(array: IArticleDefine[], termOrder: ArticleTerm[]): IArticleDefine[] {
+        const codeOrder: ArticleCode[] = termOrder.map(x => x.code);
         const finderFun = (defs: IArticleDefine) => {
             return (x: ArticleCode): boolean => {
                 return x.value === defs.code.value;
             };
         };
         const compareTo = (xIndex: number, yIndex: number): number => {
-            if(xIndex == -1 && yIndex == -1) {
+            if(xIndex === -1 && yIndex === -1) {
                 return 0;
             }
 
-            if (xIndex == -1 && yIndex != -1) {
+            if (xIndex === -1 && yIndex !== -1) {
                 return -1;
             }
 
-            if (xIndex != -1 && yIndex == -1) {
+            if (xIndex !== -1 && yIndex === -1) {
                 return 1;
             }
             if (xIndex > yIndex) {
@@ -86,38 +86,32 @@ export class DependencyGraph {
         };
         const distinct = new Array<IArticleDefine>();
         array.forEach(x => {
-            let found = distinct.find(ax => ax.code.value == x.code.value) != undefined;
+            const found = distinct.find(ax => ax.code.value === x.code.value) !== undefined;
             if (!found) {
                 distinct.push(x);
             }
         });
         return distinct.sort(DefineCompare);
     }
-    private static ArticleCodeDistinct = (array: Array<ArticleCode>): Array<ArticleCode> => {
+    private static ArticleCodeDistinct = (array: ArticleCode[]): ArticleCode[] => {
         const distinct = new Array<ArticleCode>();
         array.forEach(x => {
-            let found = DependencyGraph.firstOrDefaultCode(distinct, x) != undefined;
+            const found = DependencyGraph.firstOrDefaultCode(distinct, x) !== undefined;
             if (!found) {
                 distinct.push(x);
             }
         });
         return distinct;
     }
-    private static firstOrDefaultArticle =
-        function (array: Array<IArticleSpec>, item: ArticleCode):
-            IArticleSpec | undefined {
-            return array.find(x => (x.code.value == item.value));
+    private static firstOrDefaultArticle = (array: IArticleSpec[], item: ArticleCode): IArticleSpec | undefined => {
+            return array.find(x => (x.code.value === item.value));
         };
-    private static firstOrDefaultConcept =
-        function (array: Array<IConceptSpec>, item: ConceptCode):
-            IConceptSpec | undefined {
-            return array.find(x => (x.code.value == item.value));
+    private static firstOrDefaultConcept = (array: IConceptSpec[], item: ConceptCode): IConceptSpec | undefined => {
+            return array.find(x => (x.code.value === item.value));
         };
-    constructor() {
-    }
     InitGraphModel(articlesModel:  Iterable<IArticleSpec>,
                    conceptsModel: Iterable<IConceptSpec>):
-        [Array<ArticleTerm>, Map<ArticleTerm, Iterable<IArticleDefine>>] {
+        [ArticleTerm[], Map<ArticleTerm, Iterable<IArticleDefine>>] {
         const vertModel: Iterable<ArticleTerm> = this.CreateVertModel(articlesModel);
         const edgeModel: Iterable<ArticleEdge> = this.CreateEdgeModel(articlesModel, conceptsModel);
         const pendModel: Iterable<ArticleEdge> = this.CreatePendModel(articlesModel, conceptsModel);
@@ -140,7 +134,7 @@ export class DependencyGraph {
         const init: Set<ArticleEdge> = new Set<ArticleEdge>();
 
         return Array.from(Array.from(articlesModel).reduce<Iterable<ArticleEdge>>(reduceFunc, init)).sort((x, y) => {
-            if (ArticleTerm.compareTo(x.start, y.start)==0) {
+            if (ArticleTerm.compareTo(x.start, y.start)===0) {
                 return ArticleTerm.compareTo(x.stops, y.stops);
             }
             return ArticleTerm.compareTo(x.start, y.start);
@@ -155,7 +149,7 @@ export class DependencyGraph {
         const init: Set<ArticleEdge> = new Set<ArticleEdge>();
 
         return Array.from(Array.from(articlesModel).reduce<Iterable<ArticleEdge>>(reduceFunc, init)).sort((x, y) => {
-            if (ArticleTerm.compareTo(x.start, y.start)==0) {
+            if (ArticleTerm.compareTo(x.start, y.start)===0) {
                 return ArticleTerm.compareTo(x.stops, y.stops);
             }
             return ArticleTerm.compareTo(x.start, y.start);
@@ -171,43 +165,43 @@ export class DependencyGraph {
         }));
     }
 
-    private CreateTopoModel(vertModel: Iterable<ArticleTerm>, edgeModel: Iterable<ArticleEdge>): Array<ArticleTerm> {
+    private CreateTopoModel(vertModel: Iterable<ArticleTerm>, edgeModel: Iterable<ArticleEdge>): ArticleTerm[] {
         const degrees = new Map<number, [number, number]>(Array.from(vertModel).
             map( x => [x.code.value, [x.seqs.value, Array.from(edgeModel).reduce<number>((agr, e) => {
-                return (e.stops.code.value == x.code.value ? agr+1 : agr);
+                return (e.stops.code.value === x.code.value ? agr+1 : agr);
         }, 0)]]));
 
         const articlesOrder = new Array<ArticleTerm>();
 
         const queues = new QueueTerm(Array.from(degrees.entries())
             .filter(x => {
-                return (x[1][1] == 0);
+                return (x[1][1] === 0);
             })
             .map(x => ArticleTerm.get(x[0], x[1][0]))
             .sort(ArticleTerm.compareTo)
         );
 
         let index = 0;
-        while (queues.count() != 0) {
+        while (queues.count() !== 0) {
             index++
             const article = queues.dequeue();
             articlesOrder.push(article);
             const paths = Array.from(Array.from(edgeModel).filter(x => {
-                return (x.start.code.value == article.code.value);
+                return (x.start.code.value === article.code.value);
             }).map(x => x.stops));
 
             paths.forEach(p => {
                 const v = degrees.get(p.code.value);
                 degrees.set(p.code.value, [v[0],Math.max(0, v[1]-1)]);
-                if (degrees.get(p.code.value)[1] == 0) {
+                if (degrees.get(p.code.value)[1] === 0) {
                     queues.enqueue(p);
                 }
             });
         }
         const modelLength = Array.from(vertModel).length;
-        if (index != modelLength)
+        if (index !== modelLength)
         {
-            console.log(`CreateTopoModel, build graph failed: ${index}<>${modelLength}`);
+            logError(`CreateTopoModel, build graph failed: ${index}<>${modelLength}`);
             return new Array<ArticleTerm>();
         }
         return articlesOrder;
@@ -217,11 +211,11 @@ export class DependencyGraph {
                        conceptsModel: Iterable<IConceptSpec>,
                        edgeModel: Set<ArticleEdge>,
                        article: IArticleSpec): Iterable<ArticleEdge> {
-        let result = new Set(Array.from(edgeModel));
+        const result = new Set(Array.from(edgeModel));
 
         const concept = DependencyGraph.firstOrDefaultConcept(Array.from(conceptsModel), article.role);
 
-        if (article != undefined && concept != undefined) {
+        if (article !== undefined && concept !== undefined) {
             Array.from(article.sums).forEach(s => {
                 result.add(new ArticleEdge(article.term(), DependencyGraph.GetArticleTerm(s, articlesModel)));
             });
@@ -235,11 +229,11 @@ export class DependencyGraph {
                        conceptsModel: Iterable<IConceptSpec>,
                        edgeModel: Set<ArticleEdge>,
                        article: IArticleSpec): Iterable<ArticleEdge> {
-        let result = new Set(Array.from(edgeModel));
+        const result = new Set(Array.from(edgeModel));
 
         const concept = DependencyGraph.firstOrDefaultConcept(Array.from(conceptsModel), article.role);
 
-        if (article != undefined && concept != undefined) {
+        if (article !== undefined && concept !== undefined) {
             Array.from(concept.path).forEach(p => {
                 result.add(new ArticleEdge(DependencyGraph.GetArticleTerm(p, articlesModel), article.term()));
             });
@@ -251,7 +245,7 @@ export class DependencyGraph {
                        vertOrder: Iterable<ArticleTerm>,
                        article: ArticleTerm): Iterable<IArticleDefine> {
         const articleInit = Array.from(edgeModel).
-            filter(e => (e.stops.code.value == article.code.value)).
+            filter(e => (e.stops.code.value === article.code.value)).
             map(e => {
                 return DependencyGraph.GetArticleDefs(e.start.code, articlesModel);
             });
@@ -265,7 +259,7 @@ export class DependencyGraph {
                       defsModel: Iterable<IArticleDefine>,
                       defs: IArticleDefine): Iterable<IArticleDefine> {
         const resultInit = Array.from(edgeModel).
-            filter(e => (e.stops.code.value == defs.code.value)).
+            filter(e => (e.stops.code.value === defs.code.value)).
             map(e => {
                 return DependencyGraph.GetArticleDefs(e.start.code, articlesModel);
         });
@@ -276,14 +270,14 @@ export class DependencyGraph {
     }
     private static GetArticleTerm(article: ArticleCode, articlesModel: Iterable<IArticleSpec>): ArticleTerm {
         const articleSpec = DependencyGraph.firstOrDefaultArticle(Array.from(articlesModel), article);
-        if (articleSpec == undefined) {
+        if (articleSpec === undefined) {
             return ArticleTerm.new();
         }
         return articleSpec.term();
     }
     private static GetArticleDefs(article: ArticleCode, articlesModel: Iterable<IArticleSpec>): IArticleDefine {
         const articleSpec = DependencyGraph.firstOrDefaultArticle(Array.from(articlesModel), article);
-        if (articleSpec == undefined) {
+        if (articleSpec === undefined) {
             return ArticleDefine.new();
         }
         return articleSpec.defs();

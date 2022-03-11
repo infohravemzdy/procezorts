@@ -17,7 +17,7 @@ export class ContractTerm implements IContractTerm {
         this.termDayStop = _termStop;
 
     }
-    isActive(): Boolean {
+    isActive(): boolean {
         return (this.termDayFrom < TermConstants.TERM_BEG_FINISHED
             && this.termDayStop > TermConstants.TERM_END_FINISHED);
     }

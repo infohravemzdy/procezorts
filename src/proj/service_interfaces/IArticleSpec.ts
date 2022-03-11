@@ -3,6 +3,6 @@ import {ArticleCode} from "../service_types/ArticleCode";
 import {ArticleTerm} from "../service_types/ArticleTerm";
 
 export interface IArticleSpec extends IArticleDefine {
-    sums: Array<ArticleCode>;
+    sums: ArticleCode[];
     defs() : IArticleDefine;
 }

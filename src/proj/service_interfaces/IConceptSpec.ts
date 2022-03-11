@@ -12,7 +12,7 @@ import {IPositionTermList} from "./IPositionTerm";
 export type ResultFunc = (target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList) => BuilderResultList;
 
 export interface IConceptSpec extends IConceptDefine {
-    path : Array<ArticleCode>;
+    path : ArticleCode[];
     resultDelegate : ResultFunc;
     defaultTargetList(article: ArticleCode, period: IPeriod, ruleset: IBundleProps, month: MonthCode,
                       contractTerms: IContractTermList, positionTerms: IPositionTermList,

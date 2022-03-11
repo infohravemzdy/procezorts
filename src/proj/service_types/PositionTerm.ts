@@ -25,12 +25,12 @@ export class PositionTerm implements IPositionTerm {
         this.termDayFrom = _termFrom;
         this.termDayStop = _termStop;
     }
-    isPositionActive(): Boolean {
+    isPositionActive(): boolean {
         return (this.termDayFrom < TermConstants.TERM_BEG_FINISHED
                 && this.termDayStop > TermConstants.TERM_END_FINISHED)
     }
-    isActive(): Boolean {
-        if (this.baseTerm != undefined) {
+    isActive(): boolean {
+        if (this.baseTerm !== undefined) {
             return ((this.baseTerm)!.isActive() && this.isPositionActive())
         }
         return this.isPositionActive()

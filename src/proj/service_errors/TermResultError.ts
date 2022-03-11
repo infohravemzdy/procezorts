@@ -71,22 +71,22 @@ export class TermResultError extends Error implements ITermResultError {
 
     static CreateNoResultFoundError(period: IPeriod, target: ITermTarget,
                                     articleDescr: string,
-                                    contract: ContractCode = undefined,
-                                    position: PositionCode = undefined): TermResultError {
+                                    contract?: ContractCode,
+                                    position?: PositionCode): TermResultError {
         return new TermResultError(period, target, `result for ${articleDescr}${TermResultError.messageContractPosition(contract, position)} Not Found`);
     }
 
     static CreateNullResultFoundError(period: IPeriod, target: ITermTarget,
                                       articleDescr: string,
-                                      contract: ContractCode = undefined,
-                                      position: PositionCode = undefined): TermResultError {
+                                      contract?: ContractCode,
+                                      position?: PositionCode): TermResultError {
         return new TermResultError(period, target, `result found for ${articleDescr}${TermResultError.messageContractPosition(contract, position)} but Instance is Null!`);
     }
 
     static messageContractPosition(contract: ContractCode, position: PositionCode): string {
-        if (contract != undefined && position != undefined) {
+        if (contract !== undefined && position !== undefined) {
             return `, contract=${contract.value}, position=${position.value}`;
-        } else if (contract != undefined) {
+        } else if (contract !== undefined) {
             return `, contract=${contract.value}`;
         }
         return "";

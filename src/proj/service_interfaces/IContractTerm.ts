@@ -7,7 +7,7 @@ export interface IContractTerm {
     dateStop: Date
     termDayFrom: number
     termDayStop: number
-    isActive(): Boolean
+    isActive(): boolean
 }
 
 export type IContractTermList = Iterable<IContractTerm>;

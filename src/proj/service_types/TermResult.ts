@@ -20,7 +20,7 @@ export class TermResult extends TermSymbol implements ITermResult {
         this.target = _target;
         this.spec = _spec;
 
-        if (this.target != undefined) {
+        if (this.target !== undefined) {
             this.monthCode = this.target.monthCode;
             this.contract = this.target.contract;
             this.position = this.target.position;

@@ -14,7 +14,7 @@ export abstract class SpecFactory<P extends ISpecProvider<S, C>, S extends ISpec
 
     GetSpec(code: C, period: IPeriod, version: VersionCode): S {
         const provider: P = this.GetProvider(code, this.notFoundProvider);
-        if (provider == null) {
+        if (provider === null) {
             return this.notFoundSpec;
         }
         return provider.GetSpec(period, version);
@@ -22,7 +22,7 @@ export abstract class SpecFactory<P extends ISpecProvider<S, C>, S extends ISpec
 
     private GetProvider(code: C, defProvider: P): P {
         const hasProvider = this.providers.has(code.value);
-        if (hasProvider == false) {
+        if (hasProvider === false) {
             return defProvider;
         }
         const provider = this.providers.get(code.value);

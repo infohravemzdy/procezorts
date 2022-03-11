@@ -38,31 +38,26 @@ export interface IResultBuilder {
 }
 
 export class ResultBuilder implements IResultBuilder {
-    private firstOrDefaultConcept =
-        function (array: Array<IConceptSpec>, item: ConceptCode):
-            IConceptSpec | undefined {
-        return array.find(x => (x.code.value == item.value));
+    private firstOrDefaultConcept = (array: IConceptSpec[], item: ConceptCode): IConceptSpec | undefined => {
+        return array.find(x => (x.code.value === item.value));
     };
-    private firstOrDefaultTarget =
-        function (array: Array<ITermTarget>, item: ArticleCode):
-            ITermTarget | undefined {
-        return array.find(x => (x.article.value == item.value));
+    private firstOrDefaultTarget = (array: ITermTarget[], item: ArticleCode): ITermTarget | undefined  => {
+        return array.find(x => (x.article.value === item.value));
     };
-    private firstOrDefaultPath =
-        function (array: Array<[ArticleTerm, Iterable<IArticleDefine>]>, item: ArticleCode):
-            [ArticleTerm, Iterable<IArticleDefine>] | undefined {
-        return array.find(x => (x[0].code.value == item.value));
+    private firstOrDefaultPath = (array: [ArticleTerm, Iterable<IArticleDefine>][], item: ArticleCode):
+            [ArticleTerm, Iterable<IArticleDefine>] | undefined => {
+        return array.find(x => (x[0].code.value === item.value));
     };
-    private TargetCompare(termOrder: Array<ArticleTerm>): (x: ITermTarget, y: ITermTarget) => number {
-        const codeOrder: Array<ArticleCode> = termOrder.map(x => x.code);
+    private TargetCompare(termOrder: ArticleTerm[]): (x: ITermTarget, y: ITermTarget) => number {
+        const codeOrder: ArticleCode[] = termOrder.map(x => x.code);
         const compareTo = (xIndex: number, yIndex: number): number => {
-            if (xIndex == -1 && yIndex == -1) {
+            if (xIndex === -1 && yIndex === -1) {
                 return 0;
             }
-            if (xIndex == -1 && yIndex != -1) {
+            if (xIndex === -1 && yIndex !== -1) {
                 return -1;
             }
-            if (xIndex != -1 && yIndex == -1) {
+            if (xIndex !== -1 && yIndex === -1) {
                 return 1;
             }
             if (xIndex > yIndex) {
@@ -89,7 +84,7 @@ export class ResultBuilder implements IResultBuilder {
 
     Version: VersionCode = VersionCode.new();
     PeriodInit: IPeriod = Period.new();
-    ArticleOrder: Array<ArticleTerm> = new Array<ArticleTerm>();
+    ArticleOrder: ArticleTerm[] = new Array<ArticleTerm>();
     ArticlePaths: Map<ArticleTerm, Iterable<IArticleDefine>> = new Map<ArticleTerm, Iterable<IArticleDefine>>();
 
     private ArticleModel: Iterable<IArticleSpec> = new Array<IArticleSpec>();
@@ -127,9 +122,9 @@ export class ResultBuilder implements IResultBuilder {
                              contractTerms: IContractTermList, positionTerms: IPositionTermList,
                              targets: ITermTargetList, calcArticles: Iterable<ArticleCode>): Iterable<ITermCalcul> {
         const specDefines: Iterable<IArticleSpec> = Array.from(calcArticles)
-            .map(a => Array.from(this.ArticleModel).find(m => m.code.value == a.value))
+            .map(a => Array.from(this.ArticleModel).find(m => m.code.value === a.value))
 
-        const calcDefines = Array.from(specDefines).filter(s => (s != undefined))
+        const calcDefines = Array.from(specDefines).filter(s => (s !== undefined))
             .map(x => ArticleDefine.get(x.code.value, x.seqs.value, x.role.value))
 
         const targetsSpec: ITermTargetList = this.AddFinDefToTargets(period, ruleset,
@@ -176,11 +171,11 @@ export class ResultBuilder implements IResultBuilder {
         return Array.from(defines).flatMap(x =>
             Array.from<ITermTarget>(this.GetTargetList(period, ruleset, this.ConceptModel,
                 contractTerms, positionTerms,
-                Array.from(targets).filter(t => t.article == x.code), x.code, x.role)));
+                Array.from(targets).filter(t => t.article === x.code), x.code, x.role)));
     }
     private AddTargetToCalculs(targets: ITermTargetList): Iterable<ITermCalcul> {
         const targetsRets = Array.from(targets).map((x) => {
-            const articleSpec = Array.from(this.ArticleModel).find(a => a.code == x.article);
+            const articleSpec = Array.from(this.ArticleModel).find(a => a.code === x.article);
             return new TermCalcul(x, articleSpec, this.GetCalculFunc(this.ConceptModel, x.concept));
         });
         return targetsRets;
@@ -192,7 +187,7 @@ export class ResultBuilder implements IResultBuilder {
 
         const pendingsSpec = this.firstOrDefaultPath(Array.from(this.ArticlePaths.entries()), target.article);
 
-        if (pendingsSpec == undefined) {
+        if (pendingsSpec === undefined) {
             return resultList;
         }
         const pendingsPath = pendingsSpec[1];
@@ -200,7 +195,7 @@ export class ResultBuilder implements IResultBuilder {
         const reduceFunc = (agr: ITermTargetList, def: IArticleDefine, idx: number, array: Iterable<IArticleDefine>) => {
             return this.MergeItemPendings(period, ruleset, contractTerms, positionTerms, agr, def);
         };
-        if (pendingsPath != undefined)
+        if (pendingsPath !== undefined)
         {
             resultList =Array.from(Array.from(pendingsPath).reduce<ITermTargetList>(reduceFunc, resultList));
         }
@@ -211,7 +206,7 @@ export class ResultBuilder implements IResultBuilder {
                               targets: ITermTargetList, articleDefs: IArticleDefine): ITermTargetList {
         let resultList: ITermTargetList = Array.from(targets);
 
-        const initTargets = Array.from(targets).filter(x => x.article.value == articleDefs.code.value);
+        const initTargets = Array.from(targets).filter(x => x.article.value === articleDefs.code.value);
 
         const targetList = this.GetTargetList(period, ruleset, this.ConceptModel,
             contractTerms, positionTerms, initTargets, articleDefs.code, articleDefs.role);
@@ -225,7 +220,7 @@ export class ResultBuilder implements IResultBuilder {
                               targets: ITermTargetList, calcDefines: Iterable<IArticleDefine>): ITermTargetList {
         let resultList: ITermTargetList = Array.from(targets);
 
-        const defineList = Array.from(calcDefines).filter(x => Array.from(targets).find(t => t.article == x.code) == undefined);
+        const defineList = Array.from(calcDefines).filter(x => Array.from(targets).find(t => t.article === x.code) === undefined);
 
         const targetList = this.AddDefinesToTargets(period, ruleset, contractTerms, positionTerms, targets, defineList);
 
@@ -236,7 +231,7 @@ export class ResultBuilder implements IResultBuilder {
     private GetCalculFunc(conceptsModel: Iterable<IConceptSpec>, concept: ConceptCode): ResultFunc {
         const conceptSpec = this.firstOrDefaultConcept(Array.from(conceptsModel), concept);
 
-        if (conceptSpec == null)
+        if (conceptSpec === null)
         {
             return this.NotFoundCalculFunc;
         }
@@ -248,8 +243,8 @@ export class ResultBuilder implements IResultBuilder {
         const monthCode = MonthCode.get(period.code)
         const variant = VariantCode.get(1)
 
-        const conceptSpec = Array.from(conceptsModel).find(a => a.code.value == concept.value);
-        if (conceptSpec == undefined) {
+        const conceptSpec = Array.from(conceptsModel).find(a => a.code.value === concept.value);
+        if (conceptSpec === undefined) {
             const contract = ContractCode.new()
             const position = PositionCode.new()
             return [new TermTarget(monthCode, contract, position, variant, article, concept)];
