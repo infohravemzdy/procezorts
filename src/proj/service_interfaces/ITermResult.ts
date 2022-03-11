@@ -9,7 +9,7 @@ export interface ITermResult extends ITermSymbol {
     target: ITermTarget;
     concept: ConceptCode;
     spec: IArticleSpec;
-    conceptDescr(): String;
+    conceptDescr(): string;
 }
 
 export type BuilderResult = Result<ITermResult, ITermResultError>

@@ -14,7 +14,7 @@ export interface ITermResultError extends Error {
     article: ArticleCode;
     concept: ConceptCode;
     variant: VariantCode;
-    articleDescr(): String
-    conceptDescr(): String
+    articleDescr(): string
+    conceptDescr(): string
 }
 

@@ -17,7 +17,7 @@ export class TermTarget extends TermSymbol implements ITermTarget {
         this.concept = _concept
     }
 
-    conceptDescr(): String {
+    conceptDescr(): string {
         return `ConceptCode for ${this.concept.value}`;
     }
 

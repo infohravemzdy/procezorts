@@ -30,7 +30,7 @@ export class TermResult extends TermSymbol implements ITermResult {
         }
     }
 
-    conceptDescr(): String {
+    conceptDescr(): string {
         return `ConceptCode for ${this.concept.value}`;
     }
 }

@@ -1,10 +1,9 @@
 import {ConceptCode} from "../service_types/ConceptCode";
-import {IArticleDefine} from "./IArticleDefine";
 import {ITermSymbol} from "./ITermSymbol";
 
 export interface ITermTarget extends ITermSymbol {
     concept: ConceptCode
-    conceptDescr(): String
+    conceptDescr(): string
 }
 
 export type ITermTargetList = Iterable<ITermTarget>;

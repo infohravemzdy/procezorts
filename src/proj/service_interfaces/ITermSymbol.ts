@@ -10,5 +10,5 @@ export interface ITermSymbol {
     position: PositionCode
     variant: VariantCode
     article: ArticleCode
-    articleDescr(): String
+    articleDescr(): string
 }

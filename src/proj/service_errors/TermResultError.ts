@@ -27,14 +27,14 @@ export class TermResultError extends Error implements ITermResultError {
         this.variant = this.target?.variant ?? VariantCode.new();
     }
 
-    articleDescr(): String {
+    articleDescr(): string {
         if (this.target == null) {
             return `ArticleCode for ${this.article.value}`
         }
         return this.target.articleDescr();
     }
 
-    conceptDescr(): String {
+    conceptDescr(): string {
         if (this.target == null) {
             return `ConceptCode for ${this.concept.value}`
         }
@@ -57,33 +57,33 @@ export class TermResultError extends Error implements ITermResultError {
         return new TermResultError(period, target, "failed with no-result function");
     }
 
-    static CreateInvalidResultError(period: IPeriod, target: ITermTarget, typeDescr: String): TermResultError {
+    static CreateInvalidResultError(period: IPeriod, target: ITermTarget, typeDescr: string): TermResultError {
         return new TermResultError(period, target, `invalid result type ${typeDescr} error!`);
     }
 
-    static CreateInvalidRulesetError(period: IPeriod, target: ITermTarget, typeDescr: String): TermResultError {
+    static CreateInvalidRulesetError(period: IPeriod, target: ITermTarget, typeDescr: string): TermResultError {
         return new TermResultError(period, target, `invalid ${typeDescr} Ruleset error!`);
     }
 
-    static CreateInvalidTargetError(period: IPeriod, target: ITermTarget, typeDescr: String): TermResultError {
+    static CreateInvalidTargetError(period: IPeriod, target: ITermTarget, typeDescr: string): TermResultError {
         return new TermResultError(period, target, `invalid target type ${typeDescr} error!`);
     }
 
     static CreateNoResultFoundError(period: IPeriod, target: ITermTarget,
-                                    articleDescr: String,
+                                    articleDescr: string,
                                     contract: ContractCode = undefined,
                                     position: PositionCode = undefined): TermResultError {
         return new TermResultError(period, target, `result for ${articleDescr}${TermResultError.messageContractPosition(contract, position)} Not Found`);
     }
 
     static CreateNullResultFoundError(period: IPeriod, target: ITermTarget,
-                                      articleDescr: String,
+                                      articleDescr: string,
                                       contract: ContractCode = undefined,
                                       position: PositionCode = undefined): TermResultError {
         return new TermResultError(period, target, `result found for ${articleDescr}${TermResultError.messageContractPosition(contract, position)} but Instance is Null!`);
     }
 
-    static messageContractPosition(contract: ContractCode, position: PositionCode): String {
+    static messageContractPosition(contract: ContractCode, position: PositionCode): string {
         if (contract != undefined && position != undefined) {
             return `, contract=${contract.value}, position=${position.value}`;
         } else if (contract != undefined) {

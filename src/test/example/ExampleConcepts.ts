@@ -15,10 +15,10 @@ export class ExampleTermTarget extends TermTarget {
                 _variant: VariantCode, _article: ArticleCode, _concept: ConceptCode) {
         super(_month, _contract, _position, _variant, _article, _concept);
     }
-    override articleDescr(): String {
+    override articleDescr(): string {
         return NameOfArticle(this.article.value);
     }
-    override conceptDescr(): String {
+    override conceptDescr(): string {
         return NameOfConcept(this.concept.value);
     }
     static zero(_month: MonthCode, _contract: ContractCode, _position: PositionCode,
@@ -32,10 +32,10 @@ export class ExampleTermResult extends TermResult {
         super(target, spec);
     }
 
-    override articleDescr(): String {
+    override articleDescr(): string {
         return NameOfArticle(this.article.value);
     }
-    override conceptDescr(): String {
+    override conceptDescr(): string {
         return NameOfConcept(this.concept.value);
     }
 }

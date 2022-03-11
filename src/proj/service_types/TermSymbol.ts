@@ -19,7 +19,7 @@ export class TermSymbol implements ITermSymbol {
         this.variant = _variant;
         this.article = _article;
     }
-    articleDescr(): String {
+    articleDescr(): string {
         return `ArticleCode for ${this.article.value}`
     }
 
