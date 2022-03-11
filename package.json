@@ -1,6 +1,6 @@
 {
   "name": "hravemzdy.procezor",
-  "version": "0.22.1",
+  "version": "0.22.3",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
