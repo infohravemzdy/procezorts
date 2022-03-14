@@ -9,6 +9,7 @@ import {IConceptSpec} from "../service_interfaces/IConceptSpec";
 import {ArticleCode} from "../service_types/ArticleCode";
 import {SpecFactory} from "./SpecFactory";
 import {IConceptSpecProvider} from "../registry_providers/IConceptSpecProvider";
+import {IArticleSpecProvider} from "../registry_providers/IArticleSpecProvider";
 import {CODE} from "./ISpecFactory";
 
 class NotFoundConceptSpec extends ConceptSpec {
@@ -32,12 +33,12 @@ class NotFoundConceptProvider extends ConceptSpecProvider {
 
 }
 
-export class ConceptSpecFactory extends SpecFactory<IConceptSpecProvider, IConceptSpec, ConceptCode> implements IConceptSpecFactory {
+export abstract class ConceptSpecFactory extends SpecFactory<IConceptSpecProvider, IConceptSpec, ConceptCode> implements IConceptSpecFactory {
     override notFoundProvider = new NotFoundConceptProvider();
     override notFoundSpec = NotFoundConceptSpec.new();
     override providers = new Map<CODE, IConceptSpecProvider>();
 
-    constructor() {
+    protected constructor() {
         super();
     }
     AddProvider(code: CODE, prov: IConceptSpecProvider): boolean {

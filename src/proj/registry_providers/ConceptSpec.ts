@@ -12,7 +12,7 @@ import {ContractCode} from "../service_types/ContractCode";
 import {PositionCode} from "../service_types/PositionCode";
 import {TermTarget} from "../service_types/TermTarget";
 
-export class ConceptSpec implements IConceptSpec {
+export abstract class ConceptSpec implements IConceptSpec {
     code: ConceptCode;
     path: ArticleCode[];
     resultDelegate : ResultFunc;

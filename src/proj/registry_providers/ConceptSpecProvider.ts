@@ -4,15 +4,13 @@ import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
 import {IConceptSpec} from "../service_interfaces/IConceptSpec";
 
-export class ConceptSpecProvider implements IConceptSpecProvider {
+export abstract class ConceptSpecProvider implements IConceptSpecProvider {
     code: ConceptCode;
 
     protected constructor(_code: ConceptCode) {
         this.code = _code;
     }
 
-    GetSpec(period: IPeriod, version: VersionCode): IConceptSpec {
-        return null;
-    }
+    abstract GetSpec(period: IPeriod, version: VersionCode): IConceptSpec
 
 }
