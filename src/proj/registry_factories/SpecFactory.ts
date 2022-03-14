@@ -10,9 +10,6 @@ export class SpecFactory<P extends ISpecProvider<S, C>, S extends ISpecDefine<C>
     protected notFoundProvider: P = undefined;
     protected notFoundSpec: S = undefined;
 
-    constructor() {
-    }
-
     GetSpec(code: C, period: IPeriod, version: VersionCode): S {
         const provider: P = this.GetProvider(code, this.notFoundProvider);
         if (provider === null) {
