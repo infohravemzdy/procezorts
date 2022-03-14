@@ -1,12 +1,9 @@
-import {ISpecFactory} from "./ISpecFactory";
+import {CODE, ISpecFactory} from "./ISpecFactory";
 import {ISpecProvider} from "../registry_providers/ISpecProvider";
 import {ISpecDefine} from "../service_interfaces/ISpecDefine";
 import {ISpecCode} from "../service_interfaces/ISpecCode";
 import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
-import {IConceptSpecProvider} from "../registry_providers/IConceptSpecProvider";
-
-export type CODE = number;
 
 export abstract class SpecFactory<P extends ISpecProvider<S, C>, S extends ISpecDefine<C>, C extends ISpecCode> implements ISpecFactory<P, S, C> {
     public providers: Map<CODE, P> = new Map<CODE, P>();
@@ -36,5 +33,8 @@ export abstract class SpecFactory<P extends ISpecProvider<S, C>, S extends ISpec
 
     GetSpecList(period: IPeriod, version: VersionCode): Iterable<S> {
         return Array.from(this.providers.entries()).map(x => x[1].GetSpec(period, version));
+    }
+    AddProvider(code: CODE, prov: P): boolean {
+        return false;
     }
 }

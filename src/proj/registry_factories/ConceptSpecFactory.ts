@@ -7,9 +7,10 @@ import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
 import {IConceptSpec} from "../service_interfaces/IConceptSpec";
 import {ArticleCode} from "../service_types/ArticleCode";
-import {CODE, SpecFactory} from "./SpecFactory";
+import {SpecFactory} from "./SpecFactory";
 import {IConceptSpecProvider} from "../registry_providers/IConceptSpecProvider";
 import {IArticleSpecProvider} from "../registry_providers/IArticleSpecProvider";
+import {CODE} from "./ISpecFactory";
 
 class NotFoundConceptSpec extends ConceptSpec {
     constructor(_code: ConceptCode) {
@@ -39,5 +40,9 @@ export abstract class ConceptSpecFactory extends SpecFactory<IConceptSpecProvide
 
     protected constructor() {
         super();
+    }
+    AddProvider(code: CODE, prov: IConceptSpecProvider): boolean {
+        this.providers.set(code, prov);
+        return true;
     }
 }
