@@ -7,7 +7,7 @@ import {ISpecCode} from "../service_interfaces/ISpecCode";
 import {ArticleSeqs} from "../service_types/ArticleSeqs";
 import {ArticleTerm} from "../service_types/ArticleTerm";
 
-export abstract class ArticleSpec implements IArticleSpec {
+export class ArticleSpec implements IArticleSpec {
     code: ArticleCode;
     seqs: ArticleSeqs;
     role: ConceptCode;

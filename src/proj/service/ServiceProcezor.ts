@@ -37,10 +37,10 @@ export class ServiceProcezor implements IServiceProcezor {
     calcArticles: Iterable<ArticleCode>;
 
     private Builder: IResultBuilder = new ResultBuilder();
-    protected ArticleFactory: IArticleSpecFactory = null;
-    protected ConceptFactory: IConceptSpecFactory = null;
+    ArticleFactory: IArticleSpecFactory = null;
+    ConceptFactory: IConceptSpecFactory = null;
 
-    protected constructor(_version: number, _calcArticles: Iterable<ArticleCode>) {
+    constructor(_version: number, _calcArticles: Iterable<ArticleCode>) {
         this.version = VersionCode.get(_version);
         this.calcArticles = Array.from(_calcArticles);
     }
