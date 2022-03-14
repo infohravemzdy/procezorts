@@ -17,6 +17,7 @@ export abstract class SpecFactory<P extends ISpecProvider<S, C>, S extends ISpec
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of b04ee4e (Release 0.22.8.)
@@ -24,6 +25,8 @@ export abstract class SpecFactory<P extends ISpecProvider<S, C>, S extends ISpec
     }
 
 >>>>>>> parent of b04ee4e (Release 0.22.8.)
+=======
+>>>>>>> parent of 75c56cc (Release 0.22.4.)
     GetSpec(code: C, period: IPeriod, version: VersionCode): S {
         const provider: P = this.GetProvider(code, this.notFoundProvider);
         if (provider === null) {

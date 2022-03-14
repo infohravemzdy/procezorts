@@ -1,5 +1,7 @@
 import {ServiceProcezor} from "../../proj/service/ServiceProcezor";
-import {ExampleArticleConst} from "./ExampleConstants";
+import {ExampleArticleConst, ExampleConceptConst} from "./ExampleConstants";
+import {IArticleDefine} from "../../proj/service_interfaces/IArticleDefine";
+import {ArticleDefine} from "../../proj/service_types/ArticleDafine";
 import {ExampleArticleFactory, ExampleConceptFactory} from "./ExampleFactories";
 import {ArticleCode} from "../../proj";
 

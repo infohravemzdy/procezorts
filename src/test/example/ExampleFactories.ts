@@ -58,9 +58,10 @@ export class ExampleArticleFactory extends ArticleSpecFactory {
             []),
     ];
 
+    override providers: Map<CODE, IArticleSpecProvider> = ArticleSpecFactory.BuildProvidersFromRecords(this.providersConfig);
+
     constructor() {
         super();
-        this.providers = ArticleSpecFactory.BuildProvidersFromRecords(this.providersConfig);
     }
 }
 

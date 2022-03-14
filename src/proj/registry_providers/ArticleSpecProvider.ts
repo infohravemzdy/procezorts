@@ -7,7 +7,7 @@ import {IArticleSpec} from "../service_interfaces/IArticleSpec";
 export abstract class ArticleSpecProvider implements IArticleSpecProvider {
     code: ArticleCode;
 
-    protected constructor(_code: ArticleCode) {
+    constructor(_code: ArticleCode) {
         this.code = _code;
     }
 

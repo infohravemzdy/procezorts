@@ -7,7 +7,7 @@ import {IConceptSpec} from "../service_interfaces/IConceptSpec";
 export abstract class ConceptSpecProvider implements IConceptSpecProvider {
     code: ConceptCode;
 
-    protected constructor(_code: ConceptCode) {
+    constructor(_code: ConceptCode) {
         this.code = _code;
     }
 

@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "0.22.9",
 =======
   "version": "0.22.7",
@@ -13,6 +14,9 @@
 =======
   "version": "0.22.5",
 >>>>>>> parent of bf833d0 (Release 0.22.6.)
+=======
+  "version": "0.22.3",
+>>>>>>> parent of 75c56cc (Release 0.22.4.)
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

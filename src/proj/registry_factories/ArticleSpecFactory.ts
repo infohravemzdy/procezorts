@@ -12,8 +12,11 @@ import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
 import {ArticleProviderConfig} from "./ArticleProviderConfig";
 import {ArticleSeqs} from "../service_types/ArticleSeqs";
+<<<<<<< HEAD
 import {IConceptSpecProvider} from "../registry_providers/IConceptSpecProvider";
 import {CODE} from "./ISpecFactory";
+=======
+>>>>>>> parent of 75c56cc (Release 0.22.4.)
 
 class NotFoundArticleSpec extends ArticleSpec {
     static CONCEPT_CODE = ConceptConst.CONCEPT_NOTFOUND;
@@ -51,11 +54,11 @@ export class ProviderRecord {
     }
 }
 
-export class ArticleSpecFactory extends SpecFactory<IArticleSpecProvider, IArticleSpec, ArticleCode> implements IArticleSpecFactory {
+export abstract class ArticleSpecFactory extends SpecFactory<IArticleSpecProvider, IArticleSpec, ArticleCode> implements IArticleSpecFactory {
     override notFoundProvider = new NotFoundArticleProvider();
     override notFoundSpec = NotFoundArticleSpec.new();
-    override providers = new Map<CODE, IArticleSpecProvider>();
 
+<<<<<<< HEAD
     constructor() {
         super();
     }
@@ -63,11 +66,13 @@ export class ArticleSpecFactory extends SpecFactory<IArticleSpecProvider, IArtic
         this.providers.set(code, prov);
         return true;
     }
+=======
+>>>>>>> parent of 75c56cc (Release 0.22.4.)
     static BuildProvidersFromRecords(records: Iterable<ProviderRecord>): Map<CODE, IArticleSpecProvider> {
-        const mapProviders: Map<CODE, IArticleSpecProvider> = new Map(Array.from(records).map(x => {
+        const providers: Map<CODE, IArticleSpecProvider> = new Map(Array.from(records).map(x => {
             return [x.article, new ArticleProviderConfig(x.article, x.sequens, x.concept, x.sums)];
         }));
-        return mapProviders
+        return providers
 
     }
 }
