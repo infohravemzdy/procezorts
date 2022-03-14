@@ -32,7 +32,7 @@ export interface IServiceProcezor {
     GetConceptSpec(code: ConceptCode, period: IPeriod, version: VersionCode): IConceptSpec;
 }
 
-export abstract class ServiceProcezor implements IServiceProcezor {
+export class ServiceProcezor implements IServiceProcezor {
     version: VersionCode;
     calcArticles: Iterable<ArticleCode>;
 
@@ -124,7 +124,11 @@ export abstract class ServiceProcezor implements IServiceProcezor {
         return this.ConceptFactory.GetSpec(code, period, version);
     }
 
-    abstract BuildArticleFactory(): boolean
+    BuildArticleFactory(): boolean {
+        return false;
+    }
 
-    abstract BuildConceptFactory(): boolean
+    BuildConceptFactory(): boolean {
+        return false;
+    }
 }

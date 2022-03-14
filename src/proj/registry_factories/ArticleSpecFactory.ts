@@ -12,6 +12,7 @@ import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
 import {ArticleProviderConfig} from "./ArticleProviderConfig";
 import {ArticleSeqs} from "../service_types/ArticleSeqs";
+import {IConceptSpecProvider} from "../registry_providers/IConceptSpecProvider";
 
 class NotFoundArticleSpec extends ArticleSpec {
     static CONCEPT_CODE = ConceptConst.CONCEPT_NOTFOUND;
@@ -49,15 +50,19 @@ export class ProviderRecord {
     }
 }
 
-export abstract class ArticleSpecFactory extends SpecFactory<IArticleSpecProvider, IArticleSpec, ArticleCode> implements IArticleSpecFactory {
+export class ArticleSpecFactory extends SpecFactory<IArticleSpecProvider, IArticleSpec, ArticleCode> implements IArticleSpecFactory {
     override notFoundProvider = new NotFoundArticleProvider();
     override notFoundSpec = NotFoundArticleSpec.new();
+    override providers = new Map<CODE, IArticleSpecProvider>();
 
+    protected constructor() {
+        super();
+    }
     static BuildProvidersFromRecords(records: Iterable<ProviderRecord>): Map<CODE, IArticleSpecProvider> {
-        const providers: Map<CODE, IArticleSpecProvider> = new Map(Array.from(records).map(x => {
+        const mapProviders: Map<CODE, IArticleSpecProvider> = new Map(Array.from(records).map(x => {
             return [x.article, new ArticleProviderConfig(x.article, x.sequens, x.concept, x.sums)];
         }));
-        return providers
+        return mapProviders
 
     }
 }

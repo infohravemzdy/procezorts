@@ -12,6 +12,9 @@ export abstract class SpecFactory<P extends ISpecProvider<S, C>, S extends ISpec
     protected abstract notFoundProvider: P
     protected abstract notFoundSpec: S
 
+    protected constructor() {
+    }
+
     GetSpec(code: C, period: IPeriod, version: VersionCode): S {
         const provider: P = this.GetProvider(code, this.notFoundProvider);
         if (provider === null) {

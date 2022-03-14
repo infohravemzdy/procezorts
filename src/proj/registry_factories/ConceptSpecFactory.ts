@@ -7,8 +7,9 @@ import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
 import {IConceptSpec} from "../service_interfaces/IConceptSpec";
 import {ArticleCode} from "../service_types/ArticleCode";
-import {SpecFactory} from "./SpecFactory";
+import {CODE, SpecFactory} from "./SpecFactory";
 import {IConceptSpecProvider} from "../registry_providers/IConceptSpecProvider";
+import {IArticleSpecProvider} from "../registry_providers/IArticleSpecProvider";
 
 class NotFoundConceptSpec extends ConceptSpec {
     constructor(_code: ConceptCode) {
@@ -34,4 +35,9 @@ class NotFoundConceptProvider extends ConceptSpecProvider {
 export abstract class ConceptSpecFactory extends SpecFactory<IConceptSpecProvider, IConceptSpec, ConceptCode> implements IConceptSpecFactory {
     override notFoundProvider = new NotFoundConceptProvider();
     override notFoundSpec = NotFoundConceptSpec.new();
+    override providers = new Map<CODE, IConceptSpecProvider>();
+
+    protected constructor() {
+        super();
+    }
 }
