@@ -2,7 +2,7 @@ import {IArticleSpecFactory} from "./IArticleSpecFactory";
 import {IArticleSpecProvider} from "../registry_providers/IArticleSpecProvider";
 import {ArticleCode} from "../service_types/ArticleCode";
 import {IArticleSpec} from "../service_interfaces/IArticleSpec";
-import {SpecFactory} from "./SpecFactory";
+import {CODE, SpecFactory} from "./SpecFactory";
 import {ArticleSpec} from "../registry_providers/ArticleSpec";
 import {ConceptConst} from "../registry_constants/ConceptConst";
 import {ConceptCode} from "../service_types/ConceptCode";
@@ -12,11 +12,6 @@ import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
 import {ArticleProviderConfig} from "./ArticleProviderConfig";
 import {ArticleSeqs} from "../service_types/ArticleSeqs";
-<<<<<<< HEAD
-import {IConceptSpecProvider} from "../registry_providers/IConceptSpecProvider";
-import {CODE} from "./ISpecFactory";
-=======
->>>>>>> parent of 75c56cc (Release 0.22.4.)
 
 class NotFoundArticleSpec extends ArticleSpec {
     static CONCEPT_CODE = ConceptConst.CONCEPT_NOTFOUND;
@@ -58,16 +53,6 @@ export abstract class ArticleSpecFactory extends SpecFactory<IArticleSpecProvide
     override notFoundProvider = new NotFoundArticleProvider();
     override notFoundSpec = NotFoundArticleSpec.new();
 
-<<<<<<< HEAD
-    constructor() {
-        super();
-    }
-    AddProvider(code: CODE, prov: IArticleSpecProvider): boolean {
-        this.providers.set(code, prov);
-        return true;
-    }
-=======
->>>>>>> parent of 75c56cc (Release 0.22.4.)
     static BuildProvidersFromRecords(records: Iterable<ProviderRecord>): Map<CODE, IArticleSpecProvider> {
         const providers: Map<CODE, IArticleSpecProvider> = new Map(Array.from(records).map(x => {
             return [x.article, new ArticleProviderConfig(x.article, x.sequens, x.concept, x.sums)];

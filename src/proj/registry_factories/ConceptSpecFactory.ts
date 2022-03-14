@@ -9,11 +9,6 @@ import {IConceptSpec} from "../service_interfaces/IConceptSpec";
 import {ArticleCode} from "../service_types/ArticleCode";
 import {SpecFactory} from "./SpecFactory";
 import {IConceptSpecProvider} from "../registry_providers/IConceptSpecProvider";
-<<<<<<< HEAD
-import {IArticleSpecProvider} from "../registry_providers/IArticleSpecProvider";
-import {CODE} from "./ISpecFactory";
-=======
->>>>>>> parent of 75c56cc (Release 0.22.4.)
 
 class NotFoundConceptSpec extends ConceptSpec {
     constructor(_code: ConceptCode) {
@@ -39,16 +34,4 @@ class NotFoundConceptProvider extends ConceptSpecProvider {
 export abstract class ConceptSpecFactory extends SpecFactory<IConceptSpecProvider, IConceptSpec, ConceptCode> implements IConceptSpecFactory {
     override notFoundProvider = new NotFoundConceptProvider();
     override notFoundSpec = NotFoundConceptSpec.new();
-<<<<<<< HEAD
-    override providers = new Map<CODE, IConceptSpecProvider>();
-
-    protected constructor() {
-        super();
-    }
-    AddProvider(code: CODE, prov: IConceptSpecProvider): boolean {
-        this.providers.set(code, prov);
-        return true;
-    }
-=======
->>>>>>> parent of 75c56cc (Release 0.22.4.)
 }

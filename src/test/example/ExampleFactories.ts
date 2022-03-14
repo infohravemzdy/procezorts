@@ -1,5 +1,7 @@
 import {ExampleArticleConst, ExampleConceptConst} from "./ExampleConstants";
+import {CODE} from "../../proj/registry_factories/SpecFactory";
 import {ArticleSpecFactory, ProviderRecord} from "../../proj/registry_factories/ArticleSpecFactory";
+import {IArticleSpecProvider} from "../../proj/registry_providers/IArticleSpecProvider";
 import {ConceptSpecFactory} from "../../proj/registry_factories/ConceptSpecFactory";
 import {IConceptSpecProvider} from "../../proj/registry_providers/IConceptSpecProvider";
 import {
@@ -9,7 +11,6 @@ import {
     SocialInspaymConProv, TaxingAdvbaseConProv, TaxingAdvpaymConProv,
     TimeshtWorkingConProv
 } from "./ExampleProviders";
-import {CODE} from "../../proj/registry_factories/ISpecFactory";
 
 export class ExampleArticleFactory extends ArticleSpecFactory {
     private static ARTICLE_DEFAULT_SEQUENS: number = 0;
@@ -70,16 +71,16 @@ export class ExampleConceptFactory extends ConceptSpecFactory {
 
     constructor() {
         super();
-        this.AddProvider(ExampleConceptConst.CONCEPT_TIMESHT_WORKING, new TimeshtWorkingConProv());
-        this.AddProvider(ExampleConceptConst.CONCEPT_AMOUNT_BASIS, new AmountBasisConProv());
-        this.AddProvider(ExampleConceptConst.CONCEPT_AMOUNT_FIXED, new AmountFixedConProv());
-        this.AddProvider(ExampleConceptConst.CONCEPT_HEALTH_INSBASE, new HealthInsbaseConProv());
-        this.AddProvider(ExampleConceptConst.CONCEPT_SOCIAL_INSBASE, new SocialInsbaseConProv());
-        this.AddProvider(ExampleConceptConst.CONCEPT_HEALTH_INSPAYM, new HealthInspaymConProv());
-        this.AddProvider(ExampleConceptConst.CONCEPT_SOCIAL_INSPAYM, new SocialInspaymConProv());
-        this.AddProvider(ExampleConceptConst.CONCEPT_TAXING_ADVBASE , new TaxingAdvbaseConProv());
-        this.AddProvider(ExampleConceptConst.CONCEPT_TAXING_ADVPAYM, new TaxingAdvpaymConProv());
-        this.AddProvider(ExampleConceptConst.CONCEPT_INCOME_GROSS, new IncomeGrossConProv());
-        this.AddProvider(ExampleConceptConst.CONCEPT_INCOME_NETTO, new IncomeNettoConProv());
+        this.providers.set(ExampleConceptConst.CONCEPT_TIMESHT_WORKING, new TimeshtWorkingConProv());
+        this.providers.set(ExampleConceptConst.CONCEPT_AMOUNT_BASIS, new AmountBasisConProv());
+        this.providers.set(ExampleConceptConst.CONCEPT_AMOUNT_FIXED, new AmountFixedConProv());
+        this.providers.set(ExampleConceptConst.CONCEPT_HEALTH_INSBASE, new HealthInsbaseConProv());
+        this.providers.set(ExampleConceptConst.CONCEPT_SOCIAL_INSBASE, new SocialInsbaseConProv());
+        this.providers.set(ExampleConceptConst.CONCEPT_HEALTH_INSPAYM, new HealthInspaymConProv());
+        this.providers.set(ExampleConceptConst.CONCEPT_SOCIAL_INSPAYM, new SocialInspaymConProv());
+        this.providers.set(ExampleConceptConst.CONCEPT_TAXING_ADVBASE , new TaxingAdvbaseConProv());
+        this.providers.set(ExampleConceptConst.CONCEPT_TAXING_ADVPAYM, new TaxingAdvpaymConProv());
+        this.providers.set(ExampleConceptConst.CONCEPT_INCOME_GROSS, new IncomeGrossConProv());
+        this.providers.set(ExampleConceptConst.CONCEPT_INCOME_NETTO, new IncomeNettoConProv());
     }
 }
