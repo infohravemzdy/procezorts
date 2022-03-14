@@ -4,11 +4,12 @@ import {ISpecDefine} from "../service_interfaces/ISpecDefine";
 import {ISpecCode} from "../service_interfaces/ISpecCode";
 import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
+import {IConceptSpecProvider} from "../registry_providers/IConceptSpecProvider";
 
 export type CODE = number;
 
 export abstract class SpecFactory<P extends ISpecProvider<S, C>, S extends ISpecDefine<C>, C extends ISpecCode> implements ISpecFactory<P, S, C> {
-    protected abstract providers: Map<CODE, P>
+    public providers: Map<CODE, P> = new Map<CODE, P>();
     protected abstract notFoundProvider: P
     protected abstract notFoundSpec: S
 
