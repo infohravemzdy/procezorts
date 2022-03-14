@@ -4,9 +4,14 @@ import {ISpecDefine} from "../service_interfaces/ISpecDefine";
 import {ISpecCode} from "../service_interfaces/ISpecCode";
 import {IPeriod} from "hravemzdy.legalios";
 import {VersionCode} from "../service_types/VersionCode";
+<<<<<<< HEAD
+=======
+
+export type CODE = number;
+>>>>>>> parent of bf833d0 (Release 0.22.6.)
 
 export abstract class SpecFactory<P extends ISpecProvider<S, C>, S extends ISpecDefine<C>, C extends ISpecCode> implements ISpecFactory<P, S, C> {
-    public providers: Map<CODE, P> = new Map<CODE, P>();
+    protected abstract providers: Map<CODE, P>
     protected abstract notFoundProvider: P
     protected abstract notFoundSpec: S
 

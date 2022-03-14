@@ -2,6 +2,7 @@
   "name": "hravemzdy.procezor",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "0.22.9",
 =======
   "version": "0.22.7",
@@ -9,6 +10,9 @@
 =======
   "version": "0.22.7",
 >>>>>>> parent of b04ee4e (Release 0.22.8.)
+=======
+  "version": "0.22.5",
+>>>>>>> parent of bf833d0 (Release 0.22.6.)
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
