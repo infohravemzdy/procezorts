@@ -11,7 +11,10 @@ export abstract class SpecFactory<P extends ISpecProvider<S, C>, S extends ISpec
     protected abstract notFoundSpec: S
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of b04ee4e (Release 0.22.8.)
     protected constructor() {
     }
 
