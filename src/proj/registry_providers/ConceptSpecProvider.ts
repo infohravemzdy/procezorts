@@ -13,4 +13,7 @@ export abstract class ConceptSpecProvider implements IConceptSpecProvider {
 
     abstract GetSpec(period: IPeriod, version: VersionCode): IConceptSpec
 
+    Code(): ConceptCode {
+        return this.code;
+    }
 }

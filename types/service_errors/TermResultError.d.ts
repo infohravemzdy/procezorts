@@ -1,0 +1,30 @@
+import { ITermTarget } from "../service_interfaces/ITermTarget";
+import { IPeriod } from "hravemzdy.legalios";
+import { ITermResultError } from "../service_interfaces/ITermResultError";
+import { ContractCode } from "../service_types/ContractCode";
+import { PositionCode } from "../service_types/PositionCode";
+import { ArticleCode } from "../service_types/ArticleCode";
+import { ConceptCode } from "../service_types/ConceptCode";
+import { VariantCode } from "../service_types/VariantCode";
+export declare class TermResultError extends Error implements ITermResultError {
+    readonly target: ITermTarget;
+    readonly period: IPeriod;
+    readonly contract: ContractCode;
+    readonly position: PositionCode;
+    readonly article: ArticleCode;
+    readonly concept: ConceptCode;
+    readonly variant: VariantCode;
+    constructor(period: IPeriod, target: ITermTarget, errorText: string);
+    articleDescr(): string;
+    conceptDescr(): string;
+    static CreateEvalResultError(period: IPeriod, target: ITermTarget): TermResultError;
+    static CreateExtractResultError(period: IPeriod, target: ITermTarget): TermResultError;
+    static CreateNoImplementationError(period: IPeriod, target: ITermTarget): TermResultError;
+    static CreateNoResultFuncError(period: IPeriod, target: ITermTarget): TermResultError;
+    static CreateInvalidResultError(period: IPeriod, target: ITermTarget, typeDescr: string): TermResultError;
+    static CreateInvalidRulesetError(period: IPeriod, target: ITermTarget, typeDescr: string): TermResultError;
+    static CreateInvalidTargetError(period: IPeriod, target: ITermTarget, typeDescr: string): TermResultError;
+    static CreateNoResultFoundError(period: IPeriod, target: ITermTarget, articleDescr: string, contract?: ContractCode, position?: PositionCode): TermResultError;
+    static CreateNullResultFoundError(period: IPeriod, target: ITermTarget, articleDescr: string, contract?: ContractCode, position?: PositionCode): TermResultError;
+    static messageContractPosition(contract: ContractCode, position: PositionCode): string;
+}

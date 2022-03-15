@@ -17,13 +17,10 @@ export abstract class ConceptSpec implements IConceptSpec {
     path: ArticleCode[];
     resultDelegate : ResultFunc;
 
-    protected constructor(_code: ConceptCode, _path: Iterable<ArticleCode>, _result: ResultFunc) {
+    constructor(_code: ConceptCode, _path: Iterable<ArticleCode>, _result: ResultFunc) {
         this.code = _code;
         this.path = Array.from(_path);
         this.resultDelegate = _result;
-    }
-    getMonthCode(period: IPeriod) : MonthCode {
-        return MonthCode.get(period.code)
     }
     defaultTargetList(article: ArticleCode, period: IPeriod, ruleset: IBundleProps, month: MonthCode,
                       contractTerms: IContractTermList, positionTerms: IPositionTermList,
@@ -36,6 +33,12 @@ export abstract class ConceptSpec implements IConceptSpec {
             return Array<ITermTarget>()
         }
         return Array<ITermTarget>(new TermTarget(month, con, pos, vars, article, this.code))
+    }
+    Code(): ConceptCode {
+        return this.code;
+    }
+    static getMonthCode(period: IPeriod) : MonthCode {
+        return MonthCode.get(period.code)
     }
     static constToPathArray(_codes: Iterable<number>) : ArticleCode[] {
         return Array.from(_codes).map(x => ArticleCode.get(x));

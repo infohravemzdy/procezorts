@@ -1,9 +1,7 @@
 import {ServiceProcezor} from "../../proj/service/ServiceProcezor";
-import {ExampleArticleConst, ExampleConceptConst} from "./ExampleConstants";
-import {IArticleDefine} from "../../proj/service_interfaces/IArticleDefine";
-import {ArticleDefine} from "../../proj/service_types/ArticleDafine";
+import {ExampleArticleConst} from "./ExampleConstants";
 import {ExampleArticleFactory, ExampleConceptFactory} from "./ExampleFactories";
-import {ArticleCode} from "../../proj";
+import {ArticleCode} from "../../proj/service_types/ArticleCode";
 
 export class ServiceExample extends ServiceProcezor {
     private static readonly TEST_VERSION: number = 100;

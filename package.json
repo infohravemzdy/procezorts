@@ -1,9 +1,10 @@
 {
   "name": "hravemzdy.procezor",
-  "version": "0.22.12",
-  "description": "",
+  "version": "0.22.14",
+  "description": "payroll-procezor Salary, Health, Social, Taxing Properties for years 2010-2022",
   "main": "index.js",
   "types": "index.d.ts",
+  "private": true,
   "scripts": {
     "compile": "tsc",
     "test": "mocha -r ts-node/register ../build/**/*_test.js",

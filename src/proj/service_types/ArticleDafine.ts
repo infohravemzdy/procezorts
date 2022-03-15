@@ -14,6 +14,15 @@ export class ArticleDefine implements IArticleDefine {
         this.seqs = _seqs;
         this.role = _role;
     }
+    Code(): ArticleCode {
+        return this.code;
+    }
+    Seqs(): ArticleSeqs {
+        return this.seqs;
+    }
+    Role(): ConceptCode {
+        return this.role;
+    }
     term(): ArticleTerm {
         return new ArticleTerm(this.code, this.seqs);
     }

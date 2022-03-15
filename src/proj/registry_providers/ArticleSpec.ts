@@ -20,6 +20,15 @@ export abstract class ArticleSpec implements IArticleSpec {
         this.sums = Array.from(_sums);
     }
 
+    Code(): ArticleCode {
+        return this.code;
+    }
+    Seqs(): ArticleSeqs {
+        return this.seqs;
+    }
+    Role(): ConceptCode {
+        return this.role;
+    }
     term(): ArticleTerm {
         return new ArticleTerm(this.code, this.seqs);
     }

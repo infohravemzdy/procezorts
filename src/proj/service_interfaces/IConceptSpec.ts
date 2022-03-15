@@ -8,6 +8,7 @@ import {MonthCode} from "../service_types/MonthCode";
 import {VariantCode} from "../service_types/VariantCode";
 import {IContractTermList} from "./IContractTerm";
 import {IPositionTermList} from "./IPositionTerm";
+import {ConceptCode} from "../service_types/ConceptCode";
 
 export type ResultFunc = (target: ITermTarget, spec: IArticleSpec, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList) => BuilderResultList;
 
@@ -17,4 +18,5 @@ export interface IConceptSpec extends IConceptDefine {
     defaultTargetList(article: ArticleCode, period: IPeriod, ruleset: IBundleProps, month: MonthCode,
                       contractTerms: IContractTermList, positionTerms: IPositionTermList,
                       targets: ITermTargetList, vars: VariantCode) : ITermTargetList;
+    Code(): ConceptCode;
 }

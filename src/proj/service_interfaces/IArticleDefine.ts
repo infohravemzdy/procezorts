@@ -7,5 +7,8 @@ import {ArticleTerm} from "../service_types/ArticleTerm";
 export interface IArticleDefine extends ISpecDefine<ArticleCode> {
     seqs: ArticleSeqs;
     role: ConceptCode;
+    Code(): ArticleCode;
+    Seqs(): ArticleSeqs;
+    Role(): ConceptCode;
     term() : ArticleTerm;
 }
