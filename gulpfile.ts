@@ -6,8 +6,10 @@ const compile = () => src('package.json').pipe(shell('npm run compile'));
 
 const copy = () => src(['README.md']).pipe(dest('dist'));
 
+const copyTypes = () => src(['types/**/*']).pipe(dest('dist'));
+
 const update = () => src('package.json').pipe(replace('"private": true,', '"private": false,')).pipe(dest('dist'));
 
 const publish = () => src('package.json').pipe(shell('cd dist && npm publish'));
 
-export default series(compile, copy, update, publish);
+export default series(compile, copy, copyTypes, update, publish);
